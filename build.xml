@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="JAXB Utilities" default="jar">
+	<description>
+		Builds a JAR file of the JAXB Utilities project.
+	</description>
+
+	<property name="project.name"      value="JAXB Utilities"/>
+	<property name="project.shortname" value="jaxb-utilities"/>
+	<property name="project.version"   value="1.2"/>
+
+	<target name="jar">
+		<jar destfile="${project.shortname}-${project.version}.jar" basedir="Classes">
+			<manifest>
+				<attribute name="Implementation-Title" value="${project.name}"/>
+				<attribute name="Implementation-Version" value="${project.version}"/>
+				<attribute name="Implementation-Vendor" value="Emanuel Rabina"/>
+				<attribute name="Implementation-URL" value="http://www.ultraq.net.nz/${project.shortname}/"/>
+			</manifest>
+		</jar>
+	</target>
+
+</project>
