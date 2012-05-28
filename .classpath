@@ -6,15 +6,10 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java Architecture for XML Bindings (JAXB)">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Joda Time">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="Libraries/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="Libraries/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="Libraries/activation.jar"/>
+	<classpathentry kind="lib" path="Libraries/jsr173_1.0_api.jar"/>
+	<classpathentry kind="lib" path="Libraries/joda-time-2.1.jar"/>
 	<classpathentry kind="output" path="Classes"/>
 </classpath>
