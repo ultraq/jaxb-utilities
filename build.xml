@@ -8,10 +8,11 @@
 	<property name="project.name"      value="JAXB Utilities"/>
 	<property name="project.shortname" value="jaxb-utilities"/>
 	<property name="project.version"   value="1.2"/>
+	<property name="build.name"        value="${project.shortname}-${project.version}"/>
 
 	<!-- Create the JAR file -->
 	<target name="jar">
-		<jar basedir="Classes" destfile="${project.shortname}-${project.version}.jar">
+		<jar basedir="Classes" destfile="${build.name}.jar">
 			<manifest>
 				<attribute name="Class-Path" value="jaxb-api.jar jaxb-impl.jar activation.jar jsr173_1.0_api.jar"/>
 				<attribute name="Implementation-Title" value="${project.name}"/>

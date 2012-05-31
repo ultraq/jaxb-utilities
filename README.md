@@ -35,3 +35,18 @@ validating against a schema or schemas during marshalling.
 ### XMLCDataEscapeHandler
 Used internally by `XMLWriter` to write CDATA sections.
 
+
+Requirements
+------------
+
+ - Java 6
+ - Joda Time 2.1 (included)
+ - JAXB 2.2 (included)
+
+
+Installation
+------------
+
+Download a copy of of the pre-compiled JAR from [my website](http://www.ultraq.net.nz/downloads/projects/JAXB Utilities 1.2.zip)
+or build the project from the source code here on GitHub.
+
