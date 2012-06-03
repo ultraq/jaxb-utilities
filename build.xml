@@ -25,7 +25,7 @@
 
 	<!-- Create the source archive -->
 	<target name="source">
-		<zip basedir="Java" destfile="${project.shortname}-${project.version}-src.zip"/>
+		<zip basedir="Java" destfile="${build.name}-src.zip"/>
 	</target>
 
 	<!-- Create the overall distribution archive -->
