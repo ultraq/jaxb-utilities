@@ -105,7 +105,7 @@ Requirements
 Installation
 ------------
 
-Download a copy of of the pre-compiled JAR from [my website](http://www.ultraq.net.nz/downloads/projects/JAXB Utilities 1.2.zip)
+Download a copy of of the pre-compiled JAR from [the Downloads section](jaxb-utilities/downloads)
 or build the project from the source code here on GitHub.  Check the source for
 the other methods not already mentioned in the example usages above.
 
