@@ -6,8 +6,34 @@ Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.  Contains the following components that I've used over
 and over again:
 
+Requirements
+------------
+
+ - Java 6
+ - JAXB 2.2+ (2.2.6 and its dependencies included)
+ - Joda Time 2.1 (included)
+
+
+Installation
+------------
+
+### Standalone distribution
+Download a copy of of the pre-compiled JAR from [the Downloads section](jaxb-utilities/downloads)
+or build the project from the source code here on GitHub.
+
+### For Maven and Maven-compatible dependency managers
+Add a dependency to your project with the following co-ordinates:
+
+ - GroupId: `nz.net.ultraq.jaxb`
+ - ArtifactId: `jaxb-utilities`
+ - Version: `1.2.1`
+
+
 Adapters
 --------
+
+Be sure to check the source and Javadocs for other methods not already mentioned
+in the example usages below.
 
 ### XMLCDataAdapter
 Used in conjunction with `XMLWriter` and its `setUseCDATASections()` method,
@@ -94,18 +120,14 @@ Example usage:
 Used internally by `XMLWriter` to write CDATA sections.
 
 
-Requirements
-------------
+Changelog
+---------
 
- - Java 6
- - Joda Time 2.1 (included)
- - JAXB 2.2 (included)
+### 1.2.1
+ - Switched from Ant to Gradle as a build tool.
+ - Made project available from Maven Central.  Maven co-ordinates added to the
+   [Installation](#installation) section.
 
-
-Installation
-------------
-
-Download a copy of of the pre-compiled JAR from [the Downloads section](jaxb-utilities/downloads)
-or build the project from the source code here on GitHub.  Check the source for
-the other methods not already mentioned in the example usages above.
+### 1.2
+ - Initial GitHub version.
 

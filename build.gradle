@@ -1,0 +1,42 @@
+
+/**
+ * Gradle build script for the JAXB Utilities project.  Creates the standalone
+ * download file as per the old Ant build script, and all artifacts necessary
+ * to deploy to a Maven repository.
+ * 
+ * @author Emanuel Rabina
+ */
+
+apply plugin: 'java'
+apply from: 'https://raw.github.com/ultraq/gradle-support/master/java-support.gradle'
+apply plugin: 'maven'
+apply from: 'https://raw.github.com/ultraq/gradle-support/master/maven-support.gradle'
+apply from: 'https://raw.github.com/ultraq/gradle-support/master/bundle.gradle'
+
+//project.name        = 'JAXB Utilities'
+project.description = 'Utility classes to make XML manipulation with JAXB a tad easier.'
+project.sourceCompatibility = '1.6'
+
+project.group    = 'nz.net.ultraq.jaxb'
+project.artifact = 'jaxb-utilities'
+project.version  = '1.2.1'
+project.website  = "http://www.ultraq.net.nz/projects/${project.artifact}/"
+project.year     = '2007'
+
+project.author        = 'Emanuel Rabina'
+project.authorEmail   = 'emanuelrabina@gmail.com'
+project.authorWebsite = 'http://www.ultraq.net.nz/'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile(
+		'javax.xml.bind:jaxb-api:2.2.6',
+		'com.sun.xml.bind:jaxb-impl:2.2.6',
+		'jaxb:activation:1.0.2',
+		'javax.xml.bind:jsr173_api:1.0',
+		'joda-time:joda-time:2.1'
+	)
+}
