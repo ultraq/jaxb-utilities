@@ -33,9 +33,9 @@ repositories {
 
 dependencies {
 	compile(
-		'javax.xml.bind:jaxb-api:2.2.6',
 		'com.sun.xml.bind:jaxb-impl:2.2.6',
-		'jaxb:activation:1.0.2',
+		'javax.activation:activation:1.1.1',
+		'javax.xml.bind:jaxb-api:2.2.6',
 		'javax.xml.bind:jsr173_api:1.0',
 		'joda-time:joda-time:2.1'
 	)
