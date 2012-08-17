@@ -26,7 +26,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.2.1`
+ - Version: `1.2.2`
 
 
 Adapters
@@ -122,6 +122,9 @@ Used internally by `XMLWriter` to write CDATA sections.
 
 Changelog
 ---------
+
+### 1.2.2
+ - Updated activation JAR dependency.
 
 ### 1.2.1
  - Switched from Ant to Gradle as a build tool.
