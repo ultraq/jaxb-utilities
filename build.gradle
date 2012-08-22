@@ -15,6 +15,7 @@ apply from: 'https://raw.github.com/ultraq/gradle-support/master/bundle.gradle'
 
 //project.name        = 'JAXB Utilities'
 project.description = 'Utility classes to make XML manipulation with JAXB a tad easier.'
+project.archivesBaseName = 'jaxb-utilities'
 project.sourceCompatibility = '1.6'
 
 project.group    = 'nz.net.ultraq.jaxb'
