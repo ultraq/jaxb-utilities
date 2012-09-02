@@ -3,8 +3,7 @@ JAXB Utilities
 ==============
 
 Bits and pieces I use in both personal and work projects whenever I need to
-manipulate XML via JAXB.  Contains the following components that I've used over
-and over again:
+manipulate XML via JAXB.
 
 Requirements
 ------------
@@ -62,7 +61,7 @@ XML will wrap the element you've annotated in a CDATA section:
 
 
 ### XMLDateTimeAdapter
-Marshal/unmarshal XML dates/times to the [Joda](http://http://joda-time.sourceforge.net/)
+Marshal/unmarshal XML dates/times to the [Joda](http://joda-time.sourceforge.net/)
 `DateTime` object.
 
 If generating Java classes from a schema, annotate the XML date/time property
