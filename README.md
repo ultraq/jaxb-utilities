@@ -85,8 +85,8 @@ The next time you use one of `XMLWriter`'s `writeXMLData` methods, the resulting
 XML will wrap the element you've annotated in a CDATA section:
 
 	<fieldToUseCDATA><![CDATA[
-		I'm an element containing <html> content, but it <i>won't</i> get
-		escaped because this is a CDATA section
+	  I'm an element containing <html> content, but I <i>won't</i> get
+	  escaped because this is a CDATA section
 	]]></fieldToUseCDATA>
 
 
@@ -98,17 +98,17 @@ If generating Java classes from a schema, annotate the XML date/time property
 you want to be converted into a Joda `DateTime` instead:
 
 	<xsd:element name="date" type="xsd:date">
-		<xsd:annotation>
-			<xsd:appinfo>
-				<jxb:property>
-					<jxb:baseType>
-						<xjc:javaType
-							adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
-							name="org.joda.time.DateTime"/>
-					</jxb:baseType>
-				</jxb:property>
-			</xsd:appinfo>
-		</xsd:annotation>
+	  <xsd:annotation>
+	    <xsd:appinfo>
+	      <jxb:property>
+	        <jxb:baseType>
+	          <xjc:javaType
+	            adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
+	            name="org.joda.time.DateTime"/>
+	        </jxb:baseType>
+	      </jxb:property>
+	    </xsd:appinfo>
+	  </xsd:annotation>
 	</xsd:element>
 
 If editing Java classes directly, add an annotation to the date/time property
