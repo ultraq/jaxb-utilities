@@ -28,6 +28,36 @@ Add a dependency to your project with the following co-ordinates:
  - Version: `1.2.2`
 
 
+Marshalling/Unmarshalling
+-------------------------
+
+### XMLReader
+Wraps the job of unmarshalling XML content into a Java object, adding methods
+for enabling validation against a schema or schemas during unmarshalling.
+
+Example usage:
+
+	XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
+	xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
+	YourClass instance = xmlReader.readXMLData(source);
+
+
+### XMLWriter
+Wraps the job of marshalling Java objects back into XML files, adding methods
+for enabling CDATA sections, mapping namespaces to custom prefixes, and
+validating against a schema or schemas during marshalling.
+
+Example usage:
+
+	XMLWriter<YourClass> xmlWriter = new XMLWriter<>(YourClass.class);
+	xmlWriter.setFormatOutput(true);
+	xmlWriter.writeXMLData(instance, new File("Output.xml"));
+
+
+### XMLCDataEscapeHandler
+Used internally by `XMLWriter` to write CDATA sections.
+
+
 Adapters
 --------
 
@@ -87,36 +117,6 @@ and switch it to be a Joda `DateTime` type:
 	@XmlJavaTypeAdapter(XMLDateTimeAdapter.class)
 	@XmlSchemaType(name = "date")
 	private DateTime date;
-
-
-Marshalling/Unmarshalling
--------------------------
-
-### XMLReader
-Wraps the job of unmarshalling XML content into a Java object, adding methods
-for enabling validation against a schema or schemas during unmarshalling.
-
-Example usage:
-
-	XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
-	xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
-	YourClass instance = xmlReader.readXMLData(source);
-
-
-### XMLWriter
-Wraps the job of marshalling Java objects back into XML files, adding methods
-for enabling CDATA sections, mapping namespaces to custom prefixes, and
-validating against a schema or schemas during marshalling.
-
-Example usage:
-
-	XMLWriter<YourClass> xmlWriter = new XMLWriter<>(YourClass.class);
-	xmlWriter.setFormatOutput(true);
-	xmlWriter.writeXMLData(instance, new File("Output.xml"));
-
-
-### XMLCDataEscapeHandler
-Used internally by `XMLWriter` to write CDATA sections.
 
 
 Changelog
