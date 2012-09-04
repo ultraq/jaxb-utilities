@@ -124,6 +124,9 @@ Changelog
 
 ### 1.2.2
  - Updated activation JAR dependency.
+ - Minor fixes from the updated [maven-support](https://github.com/ultraq/gradle-support)
+   Gradle script.
+ - Minor readme changes.
 
 ### 1.2.1
  - Switched from Ant to Gradle as a build tool.
