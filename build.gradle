@@ -20,7 +20,7 @@ project.sourceCompatibility = '1.6'
 
 project.group    = 'nz.net.ultraq.jaxb'
 project.artifact = 'jaxb-utilities'
-project.version  = '1.2.3-SNAPSHOT'
+project.version  = '1.2.3'
 project.website  = "http://www.ultraq.net.nz/programming/${project.artifact}/"
 project.year     = '2007'
 

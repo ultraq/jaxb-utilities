@@ -5,8 +5,8 @@ JAXB Utilities
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
- - Current version: 1.2.2
- - Release date: 4 September 2012
+ - Current version: 1.2.3
+ - Release date: 21 January 2013
 
 Requirements
 ------------
@@ -28,7 +28,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.2.2`
+ - Version: `1.2.3`
 
 
 Marshalling/Unmarshalling
