@@ -57,27 +57,37 @@ Example usage:
 	xmlWriter.writeXMLData(instance, new File("Output.xml"));
 
 
-### XMLCDataEscapeHandler
-Used internally by `XMLWriter` to write CDATA sections.
-
-
 Adapters
 --------
-
-Be sure to check the source and Javadocs for other methods not already mentioned
-in the example usages below.
 
 ### XMLCDataAdapter
 Used in conjunction with `XMLWriter` and its `setUseCDATASections()` method,
 causes JAXB to write CDATA sections instead of the usual XML-escaped strings
 that it produces.  Handy when your string content contains lots of XML-reserved
-characters (eg: HTML or XML content)
+characters (eg: HTML or XML content).
 
-Annotate the String property in the class that you want to unmarshall as a CDATA
-section:
+To generate classes from a schema that use this adapter, annotate the string
+property you want to be converted into a CDATA-aware string instead:
+
+	<xsd:element name="html-content" type="xsd:string">
+	  <xsd:annotation>
+	    <xsd:appinfo>
+	      <jxb:property>
+	        <jxb:baseType>
+	          <xjc:javaType
+	            adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter"
+	            name="java.lang.String"/>
+	        </jxb:baseType>
+	      </jxb:property>
+	    </xsd:appinfo>
+	  </xsd:annotation>
+	</xsd:element>
+
+Alternatively, to have JAXB write CDATA sections into XML files from your
+existing Java classes, annotate the string property like so:
 
 	@XmlJavaTypeAdapter(XMLCDataAdapter.class)
-	protected String fieldToUseCDATA;
+	protected String htmlContent;
 
 Then, set the `XMLWriter` to output CDATA sections:
 
@@ -87,18 +97,18 @@ Then, set the `XMLWriter` to output CDATA sections:
 The next time you use one of `XMLWriter`'s `writeXMLData` methods, the resulting
 XML will wrap the element you've annotated in a CDATA section:
 
-	<fieldToUseCDATA><![CDATA[
+	<html-content><![CDATA[
 	  I'm an element containing <html> content, but I <i>won't</i> get
 	  escaped because this is a CDATA section
-	]]></fieldToUseCDATA>
+	]]></html-content>
 
 
 ### XMLDateTimeAdapter
 Marshal/unmarshal XML dates/times to the [Joda](http://joda-time.sourceforge.net/)
 `DateTime` object.
 
-If generating Java classes from a schema, annotate the XML date/time property
-you want to be converted into a Joda `DateTime` instead:
+To generate classes from a schema that use this adapter, annotate the XML date/time
+property you want to be converted into a Joda `DateTime` instead:
 
 	<xsd:element name="date" type="xsd:date">
 	  <xsd:annotation>
@@ -114,8 +124,8 @@ you want to be converted into a Joda `DateTime` instead:
 	  </xsd:annotation>
 	</xsd:element>
 
-If editing Java classes directly, add an annotation to the date/time property
-and switch it to be a Joda `DateTime` type:
+Alternatively, to have existing Java classes that use Joda `DateTime` map to XML
+date/time, annotate your date properties like so:
 
 	@XmlJavaTypeAdapter(XMLDateTimeAdapter.class)
 	@XmlSchemaType(name = "date")
@@ -124,6 +134,12 @@ and switch it to be a Joda `DateTime` type:
 
 Changelog
 ---------
+
+### 1.2.3
+ - Added Apache License 2.0 information to the project.
+ - Added use of the [p2-maven-plugin](https://github.com/reficio/p2-maven-plugin)
+   to generate a P2 repository for this project so it can be referenced in
+   Eclipse plugin builds (namely the [Thymeleaf Extras Eclipse Plugin](https://github.com/thymeleaf/thymeleaf-extras-eclipse-plugin)).
 
 ### 1.2.2
  - Updated activation JAR dependency.
