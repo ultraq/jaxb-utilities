@@ -38,10 +38,6 @@ project.artifact = 'jaxb-utilities'
 project.version  = '1.2.3'
 project.year     = '2007'
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
 	compile(
 		'com.sun.xml.bind:jaxb-impl:2.2.6',
