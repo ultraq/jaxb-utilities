@@ -35,7 +35,7 @@ project.sourceCompatibility = '1.6'
 
 project.group    = 'nz.net.ultraq.jaxb'
 project.artifact = 'jaxb-utilities'
-project.version  = '1.2.3'
+project.version  = '1.2.4-SNAPSHOT'
 project.year     = '2007'
 
 dependencies {
@@ -43,7 +43,9 @@ dependencies {
 		'com.sun.xml.bind:jaxb-impl:2.2.6',
 		'javax.activation:activation:1.1.1',
 		'javax.xml.bind:jaxb-api:2.2.6',
-		'javax.xml.bind:jsr173_api:1.0',
+		'javax.xml.bind:jsr173_api:1.0'
+	)
+	optional (
 		'joda-time:joda-time:2.1'
 	)
 }

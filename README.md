@@ -5,15 +5,15 @@ JAXB Utilities
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
- - Current version: 1.2.3
- - Release date: 21 January 2013
+ - Current version: 1.2.4
+ - Release date: ?? ??? 2013
 
 Requirements
 ------------
 
  - Java 6
  - JAXB 2.2+ (2.2.6 and its dependencies included)
- - Joda Time 2.1 (included)
+ - Joda Time 2.1 (optional dependency, required if using the [XmlDateTimeAdapter](#xmldatetimeadapter))
 
 
 Installation
@@ -28,7 +28,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.2.3`
+ - Version: `1.2.4`
 
 
 Marshalling/Unmarshalling
@@ -134,6 +134,12 @@ date/time, annotate your date properties like so:
 
 Changelog
 ---------
+
+### 1.2.4
+ - Made the Joda Time dependency optional, which should help reduce overall
+   package size for projects that don't need the [XmlDateTimeAdapter](#xmldatetimeadapter).
+ - Removed P2 repository generation introduced in the last version (it wasn't
+   used in the end and didn't solve the plugin dependency problem).
 
 ### 1.2.3
  - Added Apache License 2.0 information to the project.
