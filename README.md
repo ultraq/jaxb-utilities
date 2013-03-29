@@ -6,7 +6,7 @@ Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
  - Current version: 1.2.4
- - Release date: ?? ??? 2013
+ - Release date: 29 March 2013
 
 Requirements
 ------------
