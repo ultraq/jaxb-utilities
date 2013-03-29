@@ -28,7 +28,7 @@ apply plugin: 'maven'
 apply from: 'https://raw.github.com/ultraq/gradle-support/master/maven-support.gradle'
 apply from: 'https://raw.github.com/ultraq/gradle-support/master/bundle.gradle'
 
-//project.name        = 'JAXB Utilities'
+//project.name      = 'JAXB Utilities'
 project.description = 'Utility classes to make XML manipulation with JAXB a tad easier.'
 project.archivesBaseName = 'jaxb-utilities'
 project.sourceCompatibility = '1.6'
@@ -45,7 +45,5 @@ dependencies {
 		'javax.xml.bind:jaxb-api:2.2.6',
 		'javax.xml.bind:jsr173_api:1.0'
 	)
-	optional (
-		'joda-time:joda-time:2.1'
-	)
+	compile('joda-time:joda-time:2.1', optional)
 }
