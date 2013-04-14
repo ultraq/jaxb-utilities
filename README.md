@@ -35,32 +35,39 @@ Marshalling/Unmarshalling
 -------------------------
 
 ### XMLReader
+
 Wraps the job of unmarshalling XML content into a Java object, adding methods
 for enabling validation against a schema or schemas during unmarshalling.
 
 Example usage:
 
-	XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
-	xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
-	YourClass instance = xmlReader.readXMLData(source);
+```java
+XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
+xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
+YourClass instance = xmlReader.readXMLData(source);
+```
 
 
 ### XMLWriter
+
 Wraps the job of marshalling Java objects back into XML files, adding methods
 for enabling CDATA sections, mapping namespaces to custom prefixes, and
 validating against a schema or schemas during marshalling.
 
 Example usage:
 
-	XMLWriter<YourClass> xmlWriter = new XMLWriter<>(YourClass.class);
-	xmlWriter.setFormatOutput(true);
-	xmlWriter.writeXMLData(instance, new File("Output.xml"));
+```java
+XMLWriter<YourClass> xmlWriter = new XMLWriter<>(YourClass.class);
+xmlWriter.setFormatOutput(true);
+xmlWriter.writeXMLData(instance, new File("Output.xml"));
+```
 
 
 Adapters
 --------
 
 ### XMLCDataAdapter
+
 Used in conjunction with `XMLWriter` and its `setUseCDATASections()` method,
 causes JAXB to write CDATA sections instead of the usual XML-escaped strings
 that it produces.  Handy when your string content contains lots of XML-reserved
@@ -69,67 +76,80 @@ characters (eg: HTML or XML content).
 To generate classes from a schema that use this adapter, annotate the string
 property you want to be converted into a CDATA-aware string instead:
 
-	<xsd:element name="html-content" type="xsd:string">
-	  <xsd:annotation>
-	    <xsd:appinfo>
-	      <jxb:property>
-	        <jxb:baseType>
-	          <xjc:javaType
-	            adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter"
-	            name="java.lang.String"/>
-	        </jxb:baseType>
-	      </jxb:property>
-	    </xsd:appinfo>
-	  </xsd:annotation>
-	</xsd:element>
+```xml
+<xsd:element name="html-content" type="xsd:string">
+  <xsd:annotation>
+    <xsd:appinfo>
+      <jxb:property>
+        <jxb:baseType>
+          <xjc:javaType
+            adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter"
+            name="java.lang.String"/>
+        </jxb:baseType>
+      </jxb:property>
+    </xsd:appinfo>
+  </xsd:annotation>
+</xsd:element>
+```
 
 Alternatively, to have JAXB write CDATA sections into XML files from your
 existing Java classes, annotate the string property like so:
 
-	@XmlJavaTypeAdapter(XMLCDataAdapter.class)
-	protected String htmlContent;
+```java
+@XmlJavaTypeAdapter(XMLCDataAdapter.class)
+protected String htmlContent;
+```
 
 Then, set the `XMLWriter` to output CDATA sections:
 
-	XMLWriter<YourClass> xmlWriter = new XMLWriter<>();
-	xmlWriter.setUseCDATASections(true);
+```java
+XMLWriter<YourClass> xmlWriter = new XMLWriter<>();
+xmlWriter.setUseCDATASections(true);
+```
 
 The next time you use one of `XMLWriter`'s `writeXMLData` methods, the resulting
 XML will wrap the element you've annotated in a CDATA section:
 
-	<html-content><![CDATA[
-	  I'm an element containing <html> content, but I <i>won't</i> get
-	  escaped because this is a CDATA section
-	]]></html-content>
+```xml
+<html-content><![CDATA[
+  I'm an element containing <html> content, but I <i>won't</i> get
+  escaped because this is a CDATA section
+]]></html-content>
+```
 
 
 ### XMLDateTimeAdapter
+
 Marshal/unmarshal XML dates/times to the [Joda](http://joda-time.sourceforge.net/)
 `DateTime` object.
 
 To generate classes from a schema that use this adapter, annotate the XML date/time
 property you want to be converted into a Joda `DateTime` instead:
 
-	<xsd:element name="date" type="xsd:date">
-	  <xsd:annotation>
-	    <xsd:appinfo>
-	      <jxb:property>
-	        <jxb:baseType>
-	          <xjc:javaType
-	            adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
-	            name="org.joda.time.DateTime"/>
-	        </jxb:baseType>
-	      </jxb:property>
-	    </xsd:appinfo>
-	  </xsd:annotation>
-	</xsd:element>
+```xml
+<xsd:element name="date" type="xsd:date">
+  <xsd:annotation>
+    <xsd:appinfo>
+      <jxb:property>
+        <jxb:baseType>
+          <xjc:javaType
+            adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
+            name="org.joda.time.DateTime"/>
+        </jxb:baseType>
+      </jxb:property>
+    </xsd:appinfo>
+  </xsd:annotation>
+</xsd:element>
+```
 
 Alternatively, to have existing Java classes that use Joda `DateTime` map to XML
 date/time, annotate your date properties like so:
 
-	@XmlJavaTypeAdapter(XMLDateTimeAdapter.class)
-	@XmlSchemaType(name = "date")
-	private DateTime date;
+```java
+@XmlJavaTypeAdapter(XMLDateTimeAdapter.class)
+@XmlSchemaType(name = "date")
+private DateTime date;
+```
 
 
 Changelog
