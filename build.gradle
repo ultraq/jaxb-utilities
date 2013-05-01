@@ -27,6 +27,8 @@ apply from: 'https://raw.github.com/ultraq/gradle-support/master/java-support.gr
 apply plugin: 'maven'
 apply from: 'https://raw.github.com/ultraq/gradle-support/master/maven-support.gradle'
 apply from: 'https://raw.github.com/ultraq/gradle-support/master/bundle.gradle'
+apply plugin: 'eclipse'
+apply from: 'https://raw.github.com/ultraq/gradle-support/master/eclipse-support.gradle'
 
 //project.name      = 'JAXB Utilities'
 project.description = 'Utility classes to make XML manipulation with JAXB a tad easier.'
