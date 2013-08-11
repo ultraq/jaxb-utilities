@@ -27,19 +27,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * 
  * @author Emanuel Rabina
  */
-public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
-
-	/**
-	 * Converts any ISO8601 date/time string into a Joda DateTime object.
-	 * 
-	 * @param value
-	 * @return Joda DateTime.
-	 */
-	@Override
-    public DateTime unmarshal(String value) {
-
-		return ISODateTimeFormat.dateTimeParser().parseDateTime(value);
-    }
+public class XMLDateTimeAdapter extends XmlAdapter<String,DateTime> {
 
 	/**
 	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
@@ -51,5 +39,17 @@ public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
     public String marshal(DateTime value) {
 
 		return ISODateTimeFormat.dateTimeParser().print(value);
+    }
+
+	/**
+	 * Converts any ISO8601 date/time string into a Joda DateTime object.
+	 * 
+	 * @param value
+	 * @return Joda DateTime.
+	 */
+	@Override
+    public DateTime unmarshal(String value) {
+
+		return ISODateTimeFormat.dateTimeParser().parseDateTime(value);
     }
 }

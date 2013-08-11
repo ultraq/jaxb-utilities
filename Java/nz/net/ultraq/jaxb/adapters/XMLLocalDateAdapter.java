@@ -1,5 +1,5 @@
 /*
- * Copyright 2012, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,37 +16,40 @@
 
 package nz.net.ultraq.jaxb.adapters;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.ISODateTimeFormat;
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- * Special adapter class to marshall certain sections as CDATA text instead of
- * escaped text.
+ * XML Date/Time adapter to convert between XML DateTime format and the Joda
+ * LocalDate object.
  * 
  * @author Emanuel Rabina
  */
-public class XMLCDataAdapter extends XmlAdapter<String, String> {
+public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 
 	/**
-	 * Wraps <tt>v</tt> in a CDATA section.
+	 * Converts a Joda LocalDate to an XML/ISO8601 date/time string.
 	 * 
 	 * @param value
-	 * @return <tt>&lt;![CDATA[ + v + ]]&gt;</tt>
+	 * @return XML date/time string.
 	 */
 	@Override
-	public String marshal(String value) {
+	public String marshal(LocalDate value) {
 
-		return "<![CDATA[" + value + "]]>";
+		return ISODateTimeFormat.dateTimeParser().print(value);
 	}
 
 	/**
-	 * Nothing special, returns <tt>v</tt> as is.
+	 * Converts any ISO8601 date/time string into a Joda DateTime object.
 	 * 
 	 * @param value
-	 * @return <tt>v</tt>
+	 * @return Joda DateTime.
 	 */
 	@Override
-	public String unmarshal(String value) {
+	public LocalDate unmarshal(String value) {
 
-		return value;
+		return ISODateTimeFormat.dateTimeParser().parseLocalDate(value);
 	}
 }

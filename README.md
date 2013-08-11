@@ -5,22 +5,23 @@ JAXB Utilities
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
- - Current version: 1.2.4
- - Release date: 29 March 2013
+ - Current version: 1.2.5
+ - Release date: ?? ??? 2013
 
-Requirements
-------------
+Minimum Requirements
+--------------------
 
  - Java 6
- - JAXB 2.2+ (2.2.6 and its dependencies included)
- - Joda Time 2.1 (optional dependency, required if using the [XmlDateTimeAdapter](#xmldatetimeadapter))
+ - JAXB 2.2 (optional dependency, required if on JDK 6)
+ - Joda Time 2.x (optional dependency, required if using any of the Joda Time
+   adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter))
 
 
 Installation
 ------------
 
 ### Standalone distribution
-Copy the JAR from [the latest download bundle](http://www.ultraq.net.nz/downloads/programming/JAXB Utilities 1.2.4.zip),
+Copy the JAR from [the latest download bundle](http://www.ultraq.net.nz/downloads/programming/JAXB Utilities 1.2.5.zip),
 or build the project from the source code here on GitHub.
 
 ### For Maven and Maven-compatible dependency managers
@@ -28,7 +29,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.2.4`
+ - Version: `1.2.5`
 
 
 Marshalling/Unmarshalling
@@ -152,8 +153,19 @@ private DateTime date;
 ```
 
 
+### XMLLocalDateAdapter
+
+Similar usage to the `[XMLDateTimeAdapter](#xmldatetimeadapter)`, just swap `XMLDateTimeAdapter`
+for `XMLLocalDateAdapter`.
+
+
 Changelog
 ---------
+
+### 1.2.5
+ - Added a new adapter, `XMLLocalDateAdapter`, similar to the `XMLDateTimeAdapter`,
+   but returns a Joda `LocalDate` object instead (#1).
+ - Made the JAXB dependency optional as JDK 7 already includes JAXB 2.2.
 
 ### 1.2.4
  - Made the Joda Time dependency optional, which should help reduce overall
