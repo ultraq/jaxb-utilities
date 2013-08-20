@@ -41,6 +41,11 @@ project.version  = '1.2.5-SNAPSHOT'
 project.year     = '2007'
 
 dependencies {
-	compile('com.sun.xml.bind:jaxb-impl:2.2.7')
+	compile(
+		'com.sun.xml.bind:jaxb-impl:2.2.7'
+	)
 	compile('joda-time:joda-time:2.2', optional)
+	testCompile(
+		'junit:junit:4.11'
+	)
 }
