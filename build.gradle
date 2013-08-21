@@ -44,7 +44,7 @@ dependencies {
 	compile(
 		'com.sun.xml.bind:jaxb-impl:2.2.7'
 	)
-	compile('joda-time:joda-time:2.2', optional)
+	compile('joda-time:joda-time:2.3', optional)
 	testCompile(
 		'junit:junit:4.11'
 	)
