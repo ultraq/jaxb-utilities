@@ -27,6 +27,7 @@ import org.joda.time.format.ISODateTimeFormat;
  * LocalDate object.
  * 
  * @author Emanuel Rabina
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
 public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 

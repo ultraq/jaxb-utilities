@@ -7,6 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
+ *
+ */
 public class XMLLocalDateAdapterTest
 {
     private XMLLocalDateAdapter xmlLocalDateAdapter;
