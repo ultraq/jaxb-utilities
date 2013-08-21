@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - openjdk6
+  - openjdk7
+  - oraclejdk7
+
+script: 
+  - TERM=dumb gradle -i -PsonatypeUsername='' -PsonatypePassword='' --stacktrace test
+
+install:
+  - TERM=dumb gradle -i -PsonatypeUsername='' -PsonatypePassword='' --stacktrace test
