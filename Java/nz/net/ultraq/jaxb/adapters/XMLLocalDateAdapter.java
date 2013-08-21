@@ -16,10 +16,11 @@
 
 package nz.net.ultraq.jaxb.adapters;
 
-import org.joda.time.LocalDate;
-import org.joda.time.format.ISODateTimeFormat;
-
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormatterBuilder;
+import org.joda.time.format.ISODateTimeFormat;
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
@@ -37,8 +38,7 @@ public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 */
 	@Override
 	public String marshal(LocalDate value) {
-
-		return ISODateTimeFormat.dateTimeParser().print(value);
+		return value == null ? null : ISODateTimeFormat.date().withOffsetParsed().print( value );
 	}
 
 	/**
@@ -49,7 +49,9 @@ public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 */
 	@Override
 	public LocalDate unmarshal(String value) {
-
-		return ISODateTimeFormat.dateTimeParser().parseLocalDate(value);
+	    return value == null ? null :  new DateTimeFormatterBuilder().append( ISODateTimeFormat.dateParser() ).appendOptional( new DateTimeFormatterBuilder()
+                        .appendTimeZoneOffset("Z", true, 2, 4)
+                        .toFormatter()
+                        .getParser() ).toFormatter().parseLocalDate( value );
 	}
 }
