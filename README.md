@@ -13,7 +13,7 @@ Minimum Requirements
 
  - Java 6
  - JAXB 2.2 (2.2.7 and its dependencies included)
- - Joda Time 2.x (optional dependency, required if using any of the Joda Time
+ - Joda Time 2.x (optional dependency, required if using any of the Joda Time)
    adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter))
 
 
@@ -163,8 +163,12 @@ Changelog
 ---------
 
 ### 1.2.5
- - Added a new adapter, `XMLLocalDateAdapter`, similar to the `XMLDateTimeAdapter`,
-   but returns a Joda `LocalDate` object instead (#1).
+ - Big thanks to @davidkarlsen, who is basically responsible for everything that
+   happened in this release :)
+ - Added a new adapter, `XMLLocalDateAdapter`.  Similar to the `XMLDateTimeAdapter`,
+   but returns a Joda `LocalDate` object instead (#1, #3).
+ - Upgraded Joda Time optional dependency to 2.3 (#4)
+ - Added the repository to [Travis CI](https://travis-ci.org/ultraq/jaxb-utilities).
 
 ### 1.2.4
  - Made the Joda Time dependency optional, which should help reduce overall
