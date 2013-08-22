@@ -1,3 +1,4 @@
+
 package nz.net.ultraq.jaxb.tests.adapters;
 
 import nz.net.ultraq.jaxb.adapters.XMLLocalDateAdapter;
@@ -8,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Tests for the Joda LocalDate / XML Date adapter.
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
- *
  */
 public class XMLLocalDateAdapterTest
 {
