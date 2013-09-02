@@ -63,7 +63,7 @@ public class XMLDateTimeAdapterTest
         DateTime dateTime = xmlDateTimeAdapter.unmarshal( dateString );
         DateTime expectedDateTime = new DateTime()
             .withYear( 2013 ).withMonthOfYear( 8 ).withDayOfMonth( 21 )
-            .withHourOfDay( 6 ).withMinuteOfHour( 10 ).withSecondOfMinute( 8 ).withMillisOfSecond( 0 ).withZone( DateTimeZone.forOffsetHours( 2 ));
+            .withHourOfDay( 6 ).withMinuteOfHour( 10 ).withSecondOfMinute( 8 ).withMillisOfSecond( 0 ).withZoneRetainFields( DateTimeZone.forOffsetHours( 2 ));
         Assert.assertEquals( expectedDateTime.toString(), dateTime.toString() );
     }
     
