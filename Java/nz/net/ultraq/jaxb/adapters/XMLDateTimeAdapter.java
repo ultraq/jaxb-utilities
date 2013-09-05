@@ -16,40 +16,50 @@
 
 package nz.net.ultraq.jaxb.adapters;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
+import java.util.Calendar;
 
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import org.joda.time.DateTime;
+
 /**
- * XML Date/Time adapter to convert between XML DateTime format and the Joda
- * DateTime object.
+ * XML Date/Time adapter to convert between XML DateTime format and the Joda DateTime object.
  * 
  * @author Emanuel Rabina
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-public class XMLDateTimeAdapter extends XmlAdapter<String,DateTime> {
+public class XMLDateTimeAdapter
+    extends XmlAdapter<String, DateTime>
+{
 
-	/**
-	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
-	 * 
-	 * @param value
-	 * @return XML date/time string.
-	 */
-	@Override
-    public String marshal(DateTime value) {
-
-		return ISODateTimeFormat.dateTimeParser().print(value);
+    /**
+     * Converts a Joda DateTime to an XML/ISO8601 date/time string.
+     * 
+     * @param value
+     * @return XML date/time string.
+     */
+    @Override
+    public String marshal( DateTime value )
+    {
+        return value == null ? null : DatatypeConverter.printDateTime( value.toGregorianCalendar() );
     }
 
-	/**
-	 * Converts any ISO8601 date/time string into a Joda DateTime object.
-	 * 
-	 * @param value
-	 * @return Joda DateTime.
-	 */
-	@Override
-    public DateTime unmarshal(String value) {
-
-		return ISODateTimeFormat.dateTimeParser().parseDateTime(value);
+    /**
+     * Converts any ISO8601 date/time string into a Joda DateTime object.
+     * 
+     * @param value
+     * @return Joda DateTime.
+     */
+    @Override
+    public DateTime unmarshal( String value )
+    {
+        if ( value == null ) {
+            return null;
+        }
+        else {
+            Calendar calendar = DatatypeConverter.parseDateTime( value );
+            return new DateTime( calendar );
+        }
     }
 }
