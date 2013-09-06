@@ -21,7 +21,7 @@ Installation
 ------------
 
 ### Standalone distribution
-Copy the JAR from [the latest download bundle](http://www.ultraq.net.nz/downloads/programming/JAXB Utilities 1.2.6.zip),
+Copy the JAR from [the latest download bundle](https://github.com/ultraq/jaxb-utilities/releases/download/JAXB-Utilities-1.2.6/JAXB.Utilities.1.2.6.zip),
 or build the project from the source code here on GitHub.
 
 ### For Maven and Maven-compatible dependency managers
