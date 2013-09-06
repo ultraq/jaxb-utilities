@@ -37,14 +37,14 @@ project.sourceCompatibility = '1.6'
 
 project.group    = 'nz.net.ultraq.jaxb'
 project.artifact = 'jaxb-utilities'
-project.version  = '1.2.6-SNAPSHOT'
+project.version  = '1.2.6'
 project.year     = '2007'
 project.contributors = [
 	[
 		name:  'David Karlsen',
 		email: 'david@davidkarlsen.com',
 		role:  'developer',
-		contribution: 'Added the XMLLocalDateAdapter and introduced me to Travis CI'
+		contribution: 'Added the XMLLocalDateAdapter, introduced me to Travis CI, fixed the XMLDateTimeAdapter'
 	]
 ]
 
