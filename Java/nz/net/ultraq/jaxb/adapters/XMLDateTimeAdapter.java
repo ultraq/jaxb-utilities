@@ -17,17 +17,17 @@
 package nz.net.ultraq.jaxb.adapters;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
 
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- * XML Date/Time adapter to convert between XML DateTime format and the Joda
- * DateTime object.
+ * XML Date/Time adapter to convert between XML DateTime format and the Joda DateTime object.
  * 
  * @author Emanuel Rabina
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-public class XMLDateTimeAdapter extends XmlAdapter<String,DateTime> {
+public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
 
 	/**
 	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
@@ -36,10 +36,10 @@ public class XMLDateTimeAdapter extends XmlAdapter<String,DateTime> {
 	 * @return XML date/time string.
 	 */
 	@Override
-    public String marshal(DateTime value) {
+	public String marshal(DateTime value) {
 
-		return ISODateTimeFormat.dateTimeParser().print(value);
-    }
+		return value != null ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null;
+	}
 
 	/**
 	 * Converts any ISO8601 date/time string into a Joda DateTime object.
@@ -48,8 +48,8 @@ public class XMLDateTimeAdapter extends XmlAdapter<String,DateTime> {
 	 * @return Joda DateTime.
 	 */
 	@Override
-    public DateTime unmarshal(String value) {
+	public DateTime unmarshal(String value) {
 
-		return ISODateTimeFormat.dateTimeParser().parseDateTime(value);
-    }
+		return value != null ? new DateTime(DatatypeConverter.parseDateTime(value)) : null;
+	}
 }

@@ -5,8 +5,8 @@ JAXB Utilities
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
- - Current version: 1.2.5
- - Release date: 22 August 2013
+ - Current version: 1.2.6
+ - Release date: ?? ??? 2013
 
 Minimum Requirements
 --------------------
@@ -21,7 +21,7 @@ Installation
 ------------
 
 ### Standalone distribution
-Copy the JAR from [the latest download bundle](http://www.ultraq.net.nz/downloads/programming/JAXB Utilities 1.2.5.zip),
+Copy the JAR from [the latest download bundle](http://www.ultraq.net.nz/downloads/programming/JAXB Utilities 1.2.6.zip),
 or build the project from the source code here on GitHub.
 
 ### For Maven and Maven-compatible dependency managers
@@ -29,7 +29,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.2.5`
+ - Version: `1.2.6`
 
 
 Marshalling/Unmarshalling
@@ -158,9 +158,14 @@ for `XMLLocalDateAdapter`.
 Changelog
 ---------
 
+### 1.2.6
+ - Thanks once again to [David Karlsen](https://github.com/davidkarlsen) for
+   making the `XmlDateTimeAdapter` marshall correctly and support a wider
+   variety of ISO 8601 date/time formats in the process ([#7](https://github.com/ultraq/jaxb-utilities/pull/7)).
+
 ### 1.2.5
- - Big thanks to @davidkarlsen, who is basically responsible for everything that
-   happened in this release :)
+ - Big thanks to [David Karlsen](https://github.com/davidkarlsen), who is
+   basically responsible for everything that happened in this release :)
  - Added a new adapter, `XMLLocalDateAdapter`.  Similar to the `XMLDateTimeAdapter`,
    but returns a Joda `LocalDate` object instead (#1, #3).
  - Upgraded Joda Time optional dependency to 2.3 (#4)
