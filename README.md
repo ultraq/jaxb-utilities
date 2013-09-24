@@ -8,6 +8,7 @@ manipulate XML via JAXB.
  - Current version: 1.2.6
  - Release date: 5 September 2013
 
+
 Minimum Requirements
 --------------------
 
@@ -21,7 +22,7 @@ Installation
 ------------
 
 ### Standalone distribution
-Copy the JAR from [the latest download bundle](https://github.com/ultraq/jaxb-utilities/releases/download/JAXB-Utilities-1.2.6/JAXB.Utilities.1.2.6.zip),
+Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases),
 or build the project from the source code here on GitHub.
 
 ### For Maven and Maven-compatible dependency managers
