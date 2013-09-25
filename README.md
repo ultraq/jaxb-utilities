@@ -168,8 +168,9 @@ Changelog
  - Big thanks to [David Karlsen](https://github.com/davidkarlsen), who is
    basically responsible for everything that happened in this release :)
  - Added a new adapter, `XMLLocalDateAdapter`.  Similar to the `XMLDateTimeAdapter`,
-   but returns a Joda `LocalDate` object instead (#1, #3).
- - Upgraded Joda Time optional dependency to 2.3 (#4)
+   but returns a Joda `LocalDate` object instead ([#1](https://github.com/ultraq/jaxb-utilities/issues/1),
+   [#3](https://github.com/ultraq/jaxb-utilities/issues/3)).
+ - Upgraded Joda Time optional dependency to 2.3 ([#4](https://github.com/ultraq/jaxb-utilities/issues/4))
  - Added the repository to [Travis CI](https://travis-ci.org/ultraq/jaxb-utilities).
 
 ### 1.2.4
