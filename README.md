@@ -13,6 +13,7 @@ Minimum Requirements
 --------------------
 
  - Java 7
+ - JAXB 2.2 (2.2.7 and its dependencies included)
  - Joda Time 2.x (optional dependency, required if using any of the Joda Time)
    adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter))
 

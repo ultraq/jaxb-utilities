@@ -14,39 +14,34 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb.adapters;
-
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+package nz.net.ultraq.jaxb
 
 /**
- * Special adapter class to marshall certain sections as CDATA text instead of
- * escaped text.
+ * Wrapper for any exceptions that may arise during the XML transformating
+ * phase.
  * 
  * @author Emanuel Rabina
  */
-public class XMLCDataAdapter extends XmlAdapter<String, String> {
+class XMLException extends RuntimeException {
 
 	/**
-	 * Wraps <tt>v</tt> in a CDATA section.
+	 * Constructor, generates a new exception with the given message.
 	 * 
-	 * @param value
-	 * @return <tt>&lt;![CDATA[ + v + ]]&gt;</tt>
+	 * @param message Exception message to use.
 	 */
-	@Override
-	public String marshal(String value) {
+	protected XMLException(String message) {
 
-		return "<![CDATA[" + value + "]]>";
+		super(message)
 	}
 
 	/**
-	 * Nothing special, returns <tt>v</tt> as is.
+	 * Constructor, wraps the original exception in this unchecked type.
 	 * 
-	 * @param value
-	 * @return <tt>v</tt>
+	 * @param message Error message to accompany the exception.
+	 * @param cause The cause for this exception to be raised.
 	 */
-	@Override
-	public String unmarshal(String value) {
+	protected XMLException(String message, Exception cause) {
 
-		return value;
+		super(message, cause)
 	}
 }

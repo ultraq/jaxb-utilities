@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb;
+package nz.net.ultraq.jaxb
 
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
-import com.sun.xml.bind.marshaller.MinimumEscapeHandler;
-
-import java.io.IOException;
-import java.io.Writer;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler
+import com.sun.xml.bind.marshaller.MinimumEscapeHandler
 
 /**
  * Escape handler to avoid escaping CDATA sections.
  * 
  * @author Emanuel Rabina
  */
-public class XMLCDataEscapeHandler implements CharacterEscapeHandler {
+class XMLCDataEscapeHandler implements CharacterEscapeHandler {
 
-	private static final CharacterEscapeHandler defaulthandler = MinimumEscapeHandler.theInstance;
+	private static final CharacterEscapeHandler defaulthandler = MinimumEscapeHandler.theInstance
 
 	/**
 	 * Perform escaping as normal except on CDATA blocks.
@@ -42,18 +39,18 @@ public class XMLCDataEscapeHandler implements CharacterEscapeHandler {
 	 * @throws IOException
 	 */
 	@Override
-	public void escape(char[] ch, int start, int length, boolean isAttVal, Writer out) throws IOException {
+	void escape(char[] ch, int start, int length, boolean isAttVal, Writer out) throws IOException {
 
 		// If this is a CDATA block, do no escaping
 		if (length - start >= 9) {
-			String cdatacheck = new String(ch, start, 9);
-			if (cdatacheck.equals("<![CDATA[")) {
-				out.write(ch, start, length);
-				return;
+			def cdataCheck = new String(ch, start, 9)
+			if (cdataCheck == '<![CDATA[') {
+				out.write(ch, start, length)
+				return
 			}
 		}
 
 		// Otherwise, escape as normal
-		defaulthandler.escape(ch, start, length, isAttVal, out);
+		defaulthandler.escape(ch, start, length, isAttVal, out)
 	}
 }

@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb;
+package nz.net.ultraq.jaxb
 
-import org.xml.sax.SAXException;
+import org.xml.sax.SAXException
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.util.ValidationEventCollector;
+import javax.xml.bind.JAXBContext
+import javax.xml.bind.JAXBException
+import javax.xml.bind.Unmarshaller
+import javax.xml.bind.util.ValidationEventCollector
 
 /**
  * XML file unmarshaller using JAXB to turn XML files into instances of their
@@ -40,41 +31,41 @@ import javax.xml.bind.util.ValidationEventCollector;
  * 			  document to be read.
  * @author Emanuel Rabina
  */
-public class XMLReader<T> extends XMLValidatingProcessor {
+class XMLReader<T> extends XMLValidatingProcessor {
 
-	private final Unmarshaller unmarshaller;
+	private final Unmarshaller unmarshaller
 
     /**
 	 * Sets-up the XML unmarshaller.
 	 * 
-	 * @param xmlpack Package containing the Java bindings.
+	 * @param xmlPack Package containing the Java bindings.
 	 * @throws XMLException
 	 */
-	public XMLReader(String xmlpack) throws XMLException {
+	XMLReader(String xmlPack) throws XMLException {
 
 		try {
-			JAXBContext jaxbcontext = JAXBContext.newInstance(xmlpack, getClass().getClassLoader());
-			unmarshaller = jaxbcontext.createUnmarshaller();
+			def jaxbcontext = JAXBContext.newInstance(xmlPack, this.class.classLoader)
+			unmarshaller = jaxbcontext.createUnmarshaller()
 		}
 		catch (JAXBException ex) {
-			throw new XMLException("An error occurred when creating the unmarshaller", ex);
+			throw new XMLException('An error occurred when creating the unmarshaller', ex)
 		}
 	}
 
 	/**
 	 * Sets-up the XML unmarshaller.
 	 * 
-	 * @param xmlclasses List of classes to be recognized by the reader.
+	 * @param xmlClasses List of classes to be recognized by the reader.
 	 * @throws XMLException
 	 */
-	public XMLReader(Class<?>... xmlclasses) throws XMLException {
+	XMLReader(Class<?>... xmlClasses) throws XMLException {
 
 		try {
-			JAXBContext jaxbcontext = JAXBContext.newInstance(xmlclasses);
-			unmarshaller = jaxbcontext.createUnmarshaller();
+			def jaxbcontext = JAXBContext.newInstance(xmlClasses)
+			unmarshaller = jaxbcontext.createUnmarshaller()
 		}
 		catch (JAXBException ex) {
-			throw new XMLException("An error occurred when creating the unmarshaller", ex);
+			throw new XMLException('An error occurred when creating the unmarshaller', ex)
 		}
 	}
 
@@ -82,10 +73,10 @@ public class XMLReader<T> extends XMLValidatingProcessor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void clearValidatingSchemasImpl() throws JAXBException {
+	void clearValidatingSchemasImpl() throws JAXBException {
 
-		unmarshaller.setSchema(null);
-		unmarshaller.setEventHandler(null);
+		unmarshaller.schema       = null
+		unmarshaller.eventHandler = null
 	}
 
 	/**
@@ -98,13 +89,13 @@ public class XMLReader<T> extends XMLValidatingProcessor {
 	 * 		   least one schema has been added against this reader and the input
 	 * 		   didn't conform to the schema.
 	 */
-	public T readXMLData(File input) throws XMLException {
+	T readXMLData(File input) throws XMLException {
 
 		try {
-			return readXMLData(new BufferedReader(new FileReader(input)));
+			return readXMLData(new BufferedReader(new FileReader(input)))
 		}
 		catch (FileNotFoundException ex) {
-			throw new XMLException("Input file does not exist", ex);
+			throw new XMLException('Input file does not exist', ex)
 		}
 	}
 
@@ -118,9 +109,9 @@ public class XMLReader<T> extends XMLValidatingProcessor {
 	 * 		   least one schema has been added against this reader and the input
 	 * 		   didn't conform to the schema.
 	 */
-	public T readXMLData(InputStream input) throws XMLException {
+	T readXMLData(InputStream input) throws XMLException {
 
-		return readXMLData(new InputStreamReader(input));
+		return readXMLData(new InputStreamReader(input))
 	}
 
 	/**
@@ -134,39 +125,37 @@ public class XMLReader<T> extends XMLValidatingProcessor {
 	 * 		   didn't conform to the schema.
 	 */
 	@SuppressWarnings("unchecked")
-	public T readXMLData(Reader input) throws XMLException {
+	T readXMLData(Reader input) throws XMLException {
 
 		try {
 			// Combine and apply schemas to the unmarshaller
-			if (!schemabuilt && !sources.isEmpty()) {
-				unmarshaller.setSchema(buildValidatingSchema());
-				unmarshaller.setEventHandler(new ValidationEventCollector());
-				schemabuilt = true;
+			if (!schemaBuilt && !sources) {
+				unmarshaller.schema       = buildValidatingSchema()
+				unmarshaller.eventHandler = new ValidationEventCollector()
+				schemaBuilt = true;
 			}
 
 			// Unmarshall
-			T xmlroot = (T)unmarshaller.unmarshal(input);
+			def xmlroot = (T)unmarshaller.unmarshal(input)
 
 			// Check for validation errors (if validating)
-			if (unmarshaller.getSchema() != null) {
-				ValidationEventCollector vec = (ValidationEventCollector)unmarshaller.getEventHandler();
+			if (unmarshaller.schema) {
+				def vec = (ValidationEventCollector)unmarshaller.eventHandler
 				if (vec.hasEvents()) {
-					StringBuilder eventlist = new StringBuilder();
-					for (ValidationEvent event: vec.getEvents()) {
-						eventlist.append(event.getMessage()).append("\n");
-					}
-					throw new XMLException("Validation errors were detected in the input: " +
-							eventlist.toString().trim());
+					def eventList = new StringBuilder()
+					vec.events.each { event -> eventList << "${event.message}\n" }
+					throw new XMLException(
+							"Validation errors were detected in the input: ${eventList.toString().trim()}")
 				}
 			}
 
-			return xmlroot;
+			return xmlroot
 		}
 		catch (SAXException ex) {
-			throw new XMLException("An error occurred when processing the validating schemas", ex);
+			throw new XMLException('An error occurred when processing the validating schemas', ex)
 		}
 		catch (JAXBException ex) {
-			throw new XMLException("An error occurred during unmarshalling", ex);
+			throw new XMLException('An error occurred during unmarshalling', ex)
 		}
 	}
 }

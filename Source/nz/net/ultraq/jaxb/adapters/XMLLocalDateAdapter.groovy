@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb.adapters;
+package nz.net.ultraq.jaxb.adapters
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlAdapter
 
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.format.ISODateTimeFormat;
+import org.joda.time.LocalDate
+import org.joda.time.format.DateTimeFormatterBuilder
+import org.joda.time.format.ISODateTimeFormat
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
@@ -29,7 +29,7 @@ import org.joda.time.format.ISODateTimeFormat;
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
+class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 
 	/**
 	 * Converts a Joda LocalDate to an XML/ISO8601 date/time string.
@@ -39,7 +39,8 @@ public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 */
 	@Override
 	public String marshal(LocalDate value) {
-		return value == null ? null : ISODateTimeFormat.date().withOffsetParsed().print( value );
+
+		return value != null ? ISODateTimeFormat.date().withOffsetParsed().print(value) : null;
 	}
 
 	/**
@@ -49,10 +50,17 @@ public class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 * @return Joda DateTime.
 	 */
 	@Override
-	public LocalDate unmarshal(String value) {
-	    return value == null ? null :  new DateTimeFormatterBuilder().append( ISODateTimeFormat.dateParser() ).appendOptional( new DateTimeFormatterBuilder()
-                        .appendTimeZoneOffset("Z", true, 2, 4)
-                        .toFormatter()
-                        .getParser() ).toFormatter().parseLocalDate( value );
+	LocalDate unmarshal(String value) {
+
+		return value != null ?
+			new DateTimeFormatterBuilder()
+				.append(ISODateTimeFormat.dateParser())
+				.appendOptional(new DateTimeFormatterBuilder()
+					.appendTimeZoneOffset('Z', true, 2, 4)
+					.toFormatter()
+					.getParser())
+				.toFormatter()
+				.parseLocalDate(value) :
+			null
 	}
 }

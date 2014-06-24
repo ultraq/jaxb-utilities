@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb;
+package nz.net.ultraq.jaxb
 
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.SAXException
+import org.xml.sax.SAXParseException
+import org.xml.sax.helpers.DefaultHandler
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
+import javax.xml.XMLConstants
+import javax.xml.bind.JAXBException
+import javax.xml.transform.stream.StreamSource
+import javax.xml.validation.Schema
+import javax.xml.validation.SchemaFactory
 
 /**
  * Common code used between the XML processors that can validate their
@@ -38,8 +34,8 @@ import javax.xml.validation.SchemaFactory;
  */
 abstract class XMLValidatingProcessor {
 
-	final ArrayList<StreamSource> sources = new ArrayList<StreamSource>();
-	boolean schemabuilt;
+	protected final ArrayList<StreamSource> sources = []
+	protected boolean schemaBuilt;
 
 	/**
 	 * Makes this reader a validating reader by applying the given schemas.
@@ -53,12 +49,10 @@ abstract class XMLValidatingProcessor {
 	 * 
 	 * @param schemas Array of schemas from files.
 	 */
-	public void addValidatingSchema(File... schemas) {
+	void addValidatingSchema(File... schemas) {
 
-		schemabuilt = false;
-		for (File schema: schemas) {
-			sources.add(new StreamSource(schema));
-		}
+		schemaBuilt = false;
+		schemas.each { schema -> sources << new StreamSource(schema) }
 	}
 
 	/**
@@ -73,12 +67,10 @@ abstract class XMLValidatingProcessor {
 	 * 
 	 * @param schemas Array of schemas from inputstreams.
 	 */
-	public void addValidatingSchema(InputStream... schemas) {
+	void addValidatingSchema(InputStream... schemas) {
 
-		schemabuilt = false;
-		for (InputStream schema: schemas) {
-			sources.add(new StreamSource(schema));
-		}
+		schemaBuilt = false
+		schemas.each { schema -> sources << new StreamSource(schema) }
 	}
 
 	/**
@@ -88,29 +80,29 @@ abstract class XMLValidatingProcessor {
 	 * @throws XMLException If any errors came out of the schema creation.
 	 * @throws SAXException
 	 */
-	Schema buildValidatingSchema() throws XMLException, SAXException {
+	protected Schema buildValidatingSchema() throws XMLException, SAXException {
 
-		final StringBuilder messages = new StringBuilder();
+		def messages = new StringBuilder()
 
-		SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		sf.setErrorHandler(new DefaultHandler() {
+		def sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
+		sf.errorHandler = new DefaultHandler() {
 			@Override
 			public void error(SAXParseException exception) {
-				messages.append(exception.getMessage()).append("\n");
+				messages << "${exception.message}\n"
 			}
 			@Override
 			public void fatalError(SAXParseException exception) {
-				messages.append(exception.getMessage()).append("\n");
+				messages << "${exception.message}\n"
 			}
-		});
-		Schema schema = sf.newSchema(sources.toArray(new StreamSource[sources.size()]));
+		}
+		def schema = sf.newSchema(sources.toArray(new StreamSource[sources.size()]))
 
 		// Report any schema-creation errors
 		if (messages.length() > 0) {
-			throw new XMLException(messages.toString().trim());
+			throw new XMLException(messages.toString().trim())
 		}
 
-		return schema;
+		return schema
 	}
 
 	/**
@@ -118,16 +110,16 @@ abstract class XMLValidatingProcessor {
 	 * 
 	 * @throws XMLException
 	 */
-	public final void clearValidatingSchemas() throws XMLException {
+	final void clearValidatingSchemas() throws XMLException {
 
-		sources.clear();
+		sources.clear()
 		try {
-			clearValidatingSchemasImpl();
+			clearValidatingSchemasImpl()
 		}
 		catch (JAXBException ex) {
-			throw new XMLException("An error occurred when clearing the validating schemas", ex);
+			throw new XMLException('An error occurred when clearing the validating schemas', ex)
 		}
-		schemabuilt = false;
+		schemaBuilt = false
 	}
 
 	/**
@@ -135,5 +127,5 @@ abstract class XMLValidatingProcessor {
 	 * 
 	 * @throws JAXBException
 	 */
-	abstract void clearValidatingSchemasImpl() throws JAXBException;
+	abstract void clearValidatingSchemasImpl() throws JAXBException
 }

@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.jaxb.adapters;
+package nz.net.ultraq.jaxb.adapters
 
-import org.joda.time.DateTime;
+import org.joda.time.DateTime
 
-import javax.xml.bind.DatatypeConverter;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.DatatypeConverter
+import javax.xml.bind.annotation.adapters.XmlAdapter
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda DateTime object.
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
+class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
 
 	/**
 	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
@@ -36,9 +36,9 @@ public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
 	 * @return XML date/time string.
 	 */
 	@Override
-	public String marshal(DateTime value) {
+	String marshal(DateTime value) {
 
-		return value != null ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null;
+		return value != null ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
 	}
 
 	/**
@@ -48,8 +48,8 @@ public class XMLDateTimeAdapter extends XmlAdapter<String, DateTime> {
 	 * @return Joda DateTime.
 	 */
 	@Override
-	public DateTime unmarshal(String value) {
+	DateTime unmarshal(String value) {
 
-		return value != null ? new DateTime(DatatypeConverter.parseDateTime(value)) : null;
+		return value != null ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
 	}
 }
