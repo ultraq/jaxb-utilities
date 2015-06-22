@@ -2,30 +2,25 @@
 JAXB Utilities
 ==============
 
-[![Build Status](https://travis-ci.org/ultraq/jaxb-utilities.svg?branch=master)](https://travis-ci.org/ultraq/jaxb-utilities)
+[![Build Status](https://travis-ci.org/ultraq/jaxb-utilities.svg?branch=dev-groovy)](https://travis-ci.org/ultraq/jaxb-utilities)
 
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
- - Current version: 1.3
- - Release date: ? ??? 2014
-
-
-Minimum Requirements
---------------------
-
- - Java 7
- - JAXB 2.2 (2.2.7 and its dependencies included)
- - Joda Time 2.x (optional dependency, required if using any of the Joda Time)
-   adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter))
+ - Current version: 1.3.0
+ - Release date: 22 June 2015
 
 
 Installation
 ------------
 
+Minimum of Java 7 required.  Joda Time 2 also required if using any of the Joda
+Time adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter)).
+
 ### Standalone distribution
 Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases),
-or build the project from the source code here on GitHub.
+placing it in the classpath of your project, or build the project from the
+source code here on GitHub.
 
 ### For Maven and Maven-compatible dependency managers
 Add a dependency to your project with the following co-ordinates:
@@ -50,7 +45,6 @@ XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
 xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
 YourClass instance = xmlReader.readXMLData(source);
 ```
-
 
 ### XMLWriter
 
@@ -119,10 +113,9 @@ XML will wrap the element you've annotated in a CDATA section:
 ]]></html-content>
 ```
 
-
 ### XMLDateTimeAdapter
 
-Marshal/unmarshal XML dates/times to the [Joda](http://joda-time.sourceforge.net/)
+Marshal/unmarshal XML dates/times to the [Joda](http://www.joda.org/joda-time/)
 `DateTime` object.
 
 To generate classes from a schema that use this adapter, annotate the XML date/time
@@ -151,9 +144,7 @@ date/time, annotate your date properties like so:
 private DateTime date;
 ```
 
-
 ### XMLLocalDateAdapter
 
 Similar usage to the [XMLDateTimeAdapter](#xmldatetimeadapter), just swap `XMLDateTimeAdapter`
 for `XMLLocalDateAdapter`.
-

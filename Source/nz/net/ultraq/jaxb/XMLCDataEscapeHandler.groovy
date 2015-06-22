@@ -26,7 +26,7 @@ import com.sun.xml.bind.marshaller.MinimumEscapeHandler
  */
 class XMLCDataEscapeHandler implements CharacterEscapeHandler {
 
-	private static final CharacterEscapeHandler defaulthandler = MinimumEscapeHandler.theInstance
+	private static final CharacterEscapeHandler defaultHandler = MinimumEscapeHandler.theInstance
 
 	/**
 	 * Perform escaping as normal except on CDATA blocks.
@@ -36,10 +36,9 @@ class XMLCDataEscapeHandler implements CharacterEscapeHandler {
 	 * @param length
 	 * @param isAttVal
 	 * @param out
-	 * @throws IOException
 	 */
 	@Override
-	void escape(char[] ch, int start, int length, boolean isAttVal, Writer out) throws IOException {
+	void escape(char[] ch, int start, int length, boolean isAttVal, Writer out) {
 
 		// If this is a CDATA block, do no escaping
 		if (length - start >= 9) {
@@ -51,6 +50,6 @@ class XMLCDataEscapeHandler implements CharacterEscapeHandler {
 		}
 
 		// Otherwise, escape as normal
-		defaulthandler.escape(ch, start, length, isAttVal, out)
+		defaultHandler.escape(ch, start, length, isAttVal, out)
 	}
 }

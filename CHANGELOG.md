@@ -4,6 +4,8 @@ Changelog
 
 ### 1.3
  - Moved to using Java 7 and rewritten in Groovy
+ - Updated JAXB dependency to 2.2.11
+ - Updated Joda Time dependency to 2.8.1.
 
 ### 1.2.6
  - Thanks once again to [David Karlsen](https://github.com/davidkarlsen) for
@@ -40,8 +42,7 @@ Changelog
 ### 1.2.1
  - Switched from Ant to Gradle as a build tool.
  - Made project available from Maven Central.  Maven co-ordinates added to the
-   [Installation](#installation) section.
+   Installation section.
 
 ### 1.2
  - Initial GitHub version.
-
