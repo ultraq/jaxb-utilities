@@ -71,7 +71,7 @@ class XMLDateTimeAdapterTest {
 
 		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T12:12:12')
 		def expectedDateTime = new DateTime(2013, 8, 21, 12, 12, 12, 0)
-		assertEquals(expectedDateTime, dateTime)
+		assertEquals(expectedDateTime.toString(), dateTime.toString())
 	}
 
 	/**
@@ -85,17 +85,6 @@ class XMLDateTimeAdapterTest {
 	}
 
 	/**
-	 * Test the unmarshalling of a date with a time zone.
-	 */
-	@Test
-	void testUnmarshalWithZone() {
-
-		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T06:10:08+02:00')
-		def expectedDateTime = new DateTime(2013, 8, 21, 6, 10, 8, 0, DateTimeZone.forOffsetHours(2))
-		assertEquals(expectedDateTime, dateTime)
-	}
-
-	/**
 	 * Test the unmarshalling of a date set to UTC.
 	 */
 	@Test
@@ -103,6 +92,17 @@ class XMLDateTimeAdapterTest {
 
 		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T10:10:10Z')
 		def expectedDateTime = new DateTime(2013, 8, 21, 10, 10, 10, 0, DateTimeZone.UTC)
-		assertEquals(expectedDateTime, dateTime)
+		assertEquals(expectedDateTime.toString(), dateTime.toString())
+	}
+
+	/**
+	 * Test the unmarshalling of a date with a time zone.
+	 */
+	@Test
+	void testUnmarshalWithZone() {
+
+		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T06:10:08+02:00')
+		def expectedDateTime = new DateTime(2013, 8, 21, 6, 10, 8, 0, DateTimeZone.forOffsetHours(2))
+		assertEquals(expectedDateTime.toString(), dateTime.toString())
 	}
 }
