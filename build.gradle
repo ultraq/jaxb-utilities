@@ -47,7 +47,7 @@ project.contributors = [
 
 dependencies {
 	compile(
-		'com.sun.xml.bind:jaxb-impl:2.2.11',
+		'com.sun.xml.bind:jaxb-impl:2.2.7',
 		'org.codehaus.groovy:groovy:2.4.3'
 	)
 	compile('joda-time:joda-time:2.8.1', optional)

@@ -27,7 +27,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.3`
+ - Version: `1.3.0`
 
 
 Marshalling/Unmarshalling

@@ -4,7 +4,6 @@ Changelog
 
 ### 1.3
  - Moved to using Java 7 and rewritten in Groovy
- - Updated JAXB dependency to 2.2.11
  - Updated Joda Time dependency to 2.8.1.
 
 ### 1.2.6
