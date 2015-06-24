@@ -2,7 +2,7 @@
 Changelog
 =========
 
-### 1.3
+### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy
  - Updated Joda Time dependency to 2.8.1.
 
