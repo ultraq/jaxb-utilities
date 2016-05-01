@@ -3,13 +3,12 @@ JAXB Utilities
 ==============
 
 [![Build Status](https://travis-ci.org/ultraq/jaxb-utilities.svg?branch=master)](https://travis-ci.org/ultraq/jaxb-utilities)
+[![GitHub Release](https://img.shields.io/github/release/ultraq/jaxb-utilities.svg?maxAge=3600)](https://github.com/ultraq/jaxb-utilities/releases/latest)
+[![Maven Central](https://img.shields.io/maven-central/v/nz.net.ultraq.jaxb/jaxb-utiltiies.svg?maxAge=3600)](http://search.maven.org/#search|ga|1|g%3A%22nz.net.ultraq.jaxb%22%20AND%20a%3A%22jaxb-utilities%22)
+[![License](https://img.shields.io/github/license/ultraq/jaxb-utilities.svg?maxAge=2592000)](https://github.com/ultraq/jaxb-utilities/blob/master/LICENSE.txt)
 
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
-
- - Current version: 1.3.0
- - Release date: 24 June 2015
-
 
 Installation
 ------------
@@ -18,7 +17,7 @@ Minimum of Java 7 required.  Joda Time 2 also required if using any of the Joda
 Time adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter)).
 
 ### Standalone distribution
-Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases),
+Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases/latest),
 placing it in the classpath of your project, or build the project from the
 source code here on GitHub.
 
@@ -27,7 +26,7 @@ Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
- - Version: `1.3.0`
+ - Version: (as per the badges above)
 
 
 Marshalling/Unmarshalling
