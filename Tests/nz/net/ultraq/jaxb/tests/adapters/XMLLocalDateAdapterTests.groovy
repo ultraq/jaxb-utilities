@@ -28,7 +28,7 @@ import static org.junit.Assert.*
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLLocalDateAdapterTest {
+class XMLLocalDateAdapterTests {
 
 	private XMLLocalDateAdapter xmlLocalDateAdapter
 

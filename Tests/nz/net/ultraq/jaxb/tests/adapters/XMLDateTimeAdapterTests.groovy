@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ import static org.junit.Assert.*
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLDateTimeAdapterTest {
+class XMLDateTimeAdapterTests {
 
 	private XMLDateTimeAdapter xmlDateTimeAdapter
 
