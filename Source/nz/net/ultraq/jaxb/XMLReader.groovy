@@ -35,7 +35,7 @@ class XMLReader<T> extends XMLValidatingProcessor {
 
 	private final Unmarshaller unmarshaller
 
-    /**
+	/**
 	 * Sets-up the XML unmarshaller.
 	 * 
 	 * @param xmlPack Package containing the Java bindings.
