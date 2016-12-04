@@ -24,7 +24,7 @@ import com.sun.xml.bind.marshaller.MinimumEscapeHandler
  * 
  * @author Emanuel Rabina
  */
-class XMLCDataEscapeHandler implements CharacterEscapeHandler {
+class XmlCDataEscapeHandler implements CharacterEscapeHandler {
 
 	private static final CharacterEscapeHandler defaultHandler = MinimumEscapeHandler.theInstance
 

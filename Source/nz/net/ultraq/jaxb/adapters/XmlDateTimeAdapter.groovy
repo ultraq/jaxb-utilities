@@ -16,37 +16,40 @@
 
 package nz.net.ultraq.jaxb.adapters
 
+import org.joda.time.DateTime
+
+import javax.xml.bind.DatatypeConverter
 import javax.xml.bind.annotation.adapters.XmlAdapter
 
 /**
- * Special adapter class to marshall certain sections as CDATA text instead of
- * escaped text.
+ * XML Date/Time adapter to convert between XML DateTime format and the Joda DateTime object.
  * 
  * @author Emanuel Rabina
+ * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLCDataAdapter extends XmlAdapter<String, String> {
+class XmlDateTimeAdapter extends XmlAdapter<String, DateTime> {
 
 	/**
-	 * Wraps <tt>v</tt> in a CDATA section.
+	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
 	 * 
 	 * @param value
-	 * @return <tt>&lt;![CDATA[ + v + ]]&gt;</tt>
+	 * @return XML date/time string.
 	 */
 	@Override
-	String marshal(String value) {
+	String marshal(DateTime value) {
 
-		return "<![CDATA[$value]]>"
+		return value != null ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
 	}
 
 	/**
-	 * Nothing special, returns <tt>v</tt> as is.
+	 * Converts any ISO8601 date/time string into a Joda DateTime object.
 	 * 
 	 * @param value
-	 * @return <tt>v</tt>
+	 * @return Joda DateTime.
 	 */
 	@Override
-	String unmarshal(String value) {
+	DateTime unmarshal(String value) {
 
-		return value
+		return value != null ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
 	}
 }

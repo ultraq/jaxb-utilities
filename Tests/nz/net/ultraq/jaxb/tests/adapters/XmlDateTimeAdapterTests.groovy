@@ -16,7 +16,7 @@
 
 package nz.net.ultraq.jaxb.tests.adapters
 
-import nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter
+import nz.net.ultraq.jaxb.adapters.XmlDateTimeAdapter
 
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
@@ -29,9 +29,9 @@ import static org.junit.Assert.*
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLDateTimeAdapterTests {
+class XmlDateTimeAdapterTests {
 
-	private XMLDateTimeAdapter xmlDateTimeAdapter
+	private XmlDateTimeAdapter xmlDateTimeAdapter
 
 	/**
 	 * Test setup.
@@ -39,7 +39,7 @@ class XMLDateTimeAdapterTests {
 	@Before
 	void before() {
 
-		this.xmlDateTimeAdapter = new XMLDateTimeAdapter()
+		this.xmlDateTimeAdapter = new XmlDateTimeAdapter()
 	}
 
 	/**

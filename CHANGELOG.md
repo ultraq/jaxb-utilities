@@ -2,6 +2,10 @@
 Changelog
 =========
 
+### 2.0.0
+ - Change case of classes from XML to Xml
+   [#11](https://github.com/ultraq/jaxb-utilities/issues/11))
+
 ### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy
  - Updated Joda Time dependency to 2.8.1.

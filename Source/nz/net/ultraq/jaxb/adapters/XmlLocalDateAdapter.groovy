@@ -29,7 +29,7 @@ import org.joda.time.format.ISODateTimeFormat
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLLocalDateAdapter extends XmlAdapter<String,LocalDate> {
+class XmlLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 
 	/**
 	 * Converts a Joda LocalDate to an XML/ISO8601 date/time string.

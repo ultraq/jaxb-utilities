@@ -79,7 +79,7 @@ property you want to be converted into a CDATA-aware string instead:
     <xsd:appinfo>
       <jxb:property>
         <xjc:javaType
-          adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter"
+          adapter="nz.net.ultraq.jaxb.adapters.XmlCDataAdapter"
           name="java.lang.String"/>
       </jxb:property>
     </xsd:appinfo>
@@ -126,7 +126,7 @@ property you want to be converted into a Joda `DateTime` instead:
     <xsd:appinfo>
       <jxb:property>
         <xjc:javaType
-          adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
+          adapter="nz.net.ultraq.jaxb.adapters.XmlDateTimeAdapter"
           name="org.joda.time.DateTime"/>
       </jxb:property>
     </xsd:appinfo>

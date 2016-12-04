@@ -32,7 +32,7 @@ import javax.xml.validation.SchemaFactory
  * 
  * @author Emanuel Rabina
  */
-abstract class XMLValidatingProcessor {
+abstract class XmlValidatingProcessor {
 
 	protected final ArrayList<StreamSource> sources = []
 	protected boolean schemaBuilt;
@@ -77,10 +77,10 @@ abstract class XMLValidatingProcessor {
 	 * Create the overall validating schema, if schemas have been added.
 	 * 
 	 * @return The overall schema.
-	 * @throws XMLException If any errors came out of the schema creation.
+	 * @throws XmlException If any errors came out of the schema creation.
 	 * @throws SAXException
 	 */
-	protected Schema buildValidatingSchema() throws XMLException, SAXException {
+	protected Schema buildValidatingSchema() throws XmlException, SAXException {
 
 		def messages = new StringBuilder()
 
@@ -99,7 +99,7 @@ abstract class XMLValidatingProcessor {
 
 		// Report any schema-creation errors
 		if (messages.length() > 0) {
-			throw new XMLException(messages.toString().trim())
+			throw new XmlException(messages.toString().trim())
 		}
 
 		return schema
@@ -108,16 +108,16 @@ abstract class XMLValidatingProcessor {
 	/**
 	 * Remove all validating schemas.
 	 * 
-	 * @throws XMLException
+	 * @throws XmlException
 	 */
-	final void clearValidatingSchemas() throws XMLException {
+	final void clearValidatingSchemas() throws XmlException {
 
 		sources.clear()
 		try {
 			clearValidatingSchemasImpl()
 		}
 		catch (JAXBException ex) {
-			throw new XMLException('An error occurred when clearing the validating schemas', ex)
+			throw new XmlException('An error occurred when clearing the validating schemas', ex)
 		}
 		schemaBuilt = false
 	}

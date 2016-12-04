@@ -16,7 +16,7 @@
 
 package nz.net.ultraq.jaxb.tests.adapters
 
-import nz.net.ultraq.jaxb.adapters.XMLLocalDateAdapter
+import nz.net.ultraq.jaxb.adapters.XmlLocalDateAdapter
 
 import org.joda.time.LocalDate
 import org.junit.Before
@@ -28,9 +28,9 @@ import static org.junit.Assert.*
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XMLLocalDateAdapterTests {
+class XmlLocalDateAdapterTests {
 
-	private XMLLocalDateAdapter xmlLocalDateAdapter
+	private XmlLocalDateAdapter xmlLocalDateAdapter
 
 	/**
 	 * Test setup.
@@ -38,7 +38,7 @@ class XMLLocalDateAdapterTests {
 	@Before
 	void before() {
 
-		this.xmlLocalDateAdapter = new XMLLocalDateAdapter()
+		this.xmlLocalDateAdapter = new XmlLocalDateAdapter()
 	}
 
 	/**
