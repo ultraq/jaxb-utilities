@@ -16,12 +16,10 @@
 
 package nz.net.ultraq.jaxb
 
-import org.xml.sax.SAXException
 import org.xml.sax.SAXParseException
 import org.xml.sax.helpers.DefaultHandler
 
 import javax.xml.XMLConstants
-import javax.xml.bind.JAXBException
 import javax.xml.transform.stream.StreamSource
 import javax.xml.validation.Schema
 import javax.xml.validation.SchemaFactory
@@ -35,7 +33,7 @@ import javax.xml.validation.SchemaFactory
 abstract class XmlValidatingProcessor {
 
 	protected final ArrayList<StreamSource> sources = []
-	protected boolean schemaBuilt;
+	protected boolean schemaBuilt
 
 	/**
 	 * Makes this reader a validating reader by applying the given schemas.
@@ -47,59 +45,61 @@ abstract class XmlValidatingProcessor {
 	 * cumulative, such that the resulting schema against which the input will
 	 * be validated against will contain all the supplied schemas. 
 	 * 
-	 * @param schemas Array of schemas from files.
+	 * @param schemas Array or argument list of schemas from files.
 	 */
 	void addValidatingSchema(File... schemas) {
 
-		schemaBuilt = false;
-		schemas.each { schema -> sources << new StreamSource(schema) }
+		schemaBuilt = false
+		schemas.each { schema ->
+			sources << new StreamSource(schema)
+		}
 	}
 
 	/**
 	 * Makes this reader a validating reader by applying the given schemas.
 	 * Adding a schema to this reader will cause reading to fail if the XML
-	 * input doesn't conform to the schemas added by any
-	 * <tt>addValidatingSchema()</tt> methods.
+	 * input doesn't conform to the schemas added by this and
+	 * {@link #addValidatingSchema(File...)}.
 	 * <p>
 	 * Note that use of the <tt>addValidatingSchema()</tt> methods are
 	 * cumulative, such that the resulting schema against which the input will
 	 * be validated against will contain all the supplied schemas. 
 	 * 
-	 * @param schemas Array of schemas from inputstreams.
+	 * @param schemas Array or argument list of schemas from input streams.
 	 */
 	void addValidatingSchema(InputStream... schemas) {
 
 		schemaBuilt = false
-		schemas.each { schema -> sources << new StreamSource(schema) }
+		schemas.each { schema ->
+			sources << new StreamSource(schema)
+		}
 	}
 
 	/**
 	 * Create the overall validating schema, if schemas have been added.
 	 * 
 	 * @return The overall schema.
-	 * @throws XmlException If any errors came out of the schema creation.
-	 * @throws SAXException
 	 */
-	protected Schema buildValidatingSchema() throws XmlException, SAXException {
+	protected Schema buildValidatingSchema() {
 
-		def messages = new StringBuilder()
+		def messages = []
 
-		def sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
-		sf.errorHandler = new DefaultHandler() {
+		def schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
+		schemaFactory.errorHandler = new DefaultHandler() {
 			@Override
-			public void error(SAXParseException exception) {
-				messages << "${exception.message}\n"
+			void error(SAXParseException exception) {
+				messages << exception.message
 			}
 			@Override
-			public void fatalError(SAXParseException exception) {
-				messages << "${exception.message}\n"
+			void fatalError(SAXParseException exception) {
+				messages << exception.message
 			}
 		}
-		def schema = sf.newSchema(sources.toArray(new StreamSource[sources.size()]))
+		def schema = schemaFactory.newSchema(sources.toArray(new StreamSource[sources.size()]))
 
 		// Report any schema-creation errors
-		if (messages.length() > 0) {
-			throw new XmlException(messages.toString().trim())
+		if (messages) {
+			throw new XmlValidationException(messages.join(', '))
 		}
 
 		return schema
@@ -107,25 +107,10 @@ abstract class XmlValidatingProcessor {
 
 	/**
 	 * Remove all validating schemas.
-	 * 
-	 * @throws XmlException
 	 */
-	final void clearValidatingSchemas() throws XmlException {
+	void clearValidatingSchemas() {
 
 		sources.clear()
-		try {
-			clearValidatingSchemasImpl()
-		}
-		catch (JAXBException ex) {
-			throw new XmlException('An error occurred when clearing the validating schemas', ex)
-		}
 		schemaBuilt = false
 	}
-
-	/**
-	 * Remove all validating schemas.
-	 * 
-	 * @throws JAXBException
-	 */
-	abstract void clearValidatingSchemasImpl() throws JAXBException
 }

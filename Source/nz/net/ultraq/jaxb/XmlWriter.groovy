@@ -16,14 +16,10 @@
 
 package nz.net.ultraq.jaxb
 
-import org.xml.sax.SAXException
-
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper
 
 import javax.xml.bind.JAXBContext
-import javax.xml.bind.JAXBException
 import javax.xml.bind.Marshaller
-import javax.xml.bind.PropertyException
 import javax.xml.bind.util.ValidationEventCollector
 
 /**
@@ -42,44 +38,33 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 
 	/**
 	 * Sets-up the XML marshaller.
-	 *
-	 * @param xmlPack Name of the package containing JAXB-generated classes.
-	 * @throws XmlException
+	 * 
+	 * @param xmlPackage Name of the package containing JAXB-generated classes.
 	 */
-	XmlWriter(String xmlPack) throws XmlException {
+	XmlWriter(String xmlPackage) {
 
-		try {
-			def jaxbcontext = JAXBContext.newInstance(xmlPack)
-			marshaller = jaxbcontext.createMarshaller()
-		}
-		catch (JAXBException ex) {
-			throw new XmlException('An error occurred when creating the marshaller', ex)
-		}
+		def jaxbcontext = JAXBContext.newInstance(xmlPackage)
+		marshaller = jaxbcontext.createMarshaller()
 	}
 
 	/**
 	 * Sets-up the XML marshaller.
 	 * 
 	 * @param xmlClasses List of classes that the reader needs to recognize.
-	 * @throws XmlException
 	 */
-	XmlWriter(Class<?>... xmlClasses) throws XmlException {
+	XmlWriter(Class<?>... xmlClasses) {
 
-		try {
-			def jaxbcontext = JAXBContext.newInstance(xmlClasses)
-			marshaller = jaxbcontext.createMarshaller()
-		}
-		catch (JAXBException ex) {
-			throw new XmlException('An error occurred when creating the marshaller', ex)
-		}
+		def jaxbcontext = JAXBContext.newInstance(xmlClasses)
+		marshaller = jaxbcontext.createMarshaller()
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	void clearValidatingSchemasImpl() throws JAXBException {
+	void clearValidatingSchemas() {
 
+		super.clearValidatingSchemas()
 		marshaller.schema       = null
 		marshaller.eventHandler = null
 	}
@@ -88,17 +73,10 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 	 * Set whether the resulting XML file will be formatted 'nicely'.
 	 * 
 	 * @param formatOutput
-	 * @throws XmlException If there was some issue in accepting the 'format'
-	 * 		   property.
 	 */
 	void setFormatOutput(boolean formatOutput) {
 
-		try {
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatOutput)
-		}
-		catch (PropertyException ex) {
-			throw new XmlException("Unable to set 'format output' property to $formatOutput", ex)
-		}
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatOutput)
 	}
 
 	/**
@@ -106,129 +84,90 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 	 * over the namespace prefixes used in the marshaller.
 	 * 
 	 * @param prefixMapper <tt>NamespacePrefixMapper</tt> implementation.
-	 * @throws XmlException
 	 */
-	void setNamespacePrefixMapper(NamespacePrefixMapper prefixMapper) throws XmlException {
+	void setNamespacePrefixMapper(NamespacePrefixMapper prefixMapper) {
 
-		try {
-			marshaller.setProperty(NAMESPACE_PREFIX_MAPPER, prefixMapper)
-		}
-		catch (PropertyException ex) {
-			throw new XmlException('Unable to specify a custom namespace prefix mapping', ex)
-		}
+		marshaller.setProperty(NAMESPACE_PREFIX_MAPPER, prefixMapper)
 	}
 
 	/**
-	 * Sets-up a schema location to go into the output XML.  If this method is
-	 * called more than once, then only the latest schema location is used.
+	 * Set the schema location to go into the output XML.
 	 * 
 	 * @param namespace Schema target namespace.
-	 * @param url		Schema URL.
-	 * @throws XmlException
+	 * @param url       Schema URL.
 	 */
-	void setSchemaLocation(String namespace, String url) throws XmlException {
+	void setSchemaLocation(String namespace, String url) {
 
-		try {
-			marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "$namespace $url")
-		}
-		catch (PropertyException ex) {
-			throw new XmlException('Unable to specify a schema location', ex)
-		}
+		marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "${namespace} ${url}")
 	}
 
 	/**
 	 * Enable/Disable CDATA sections in the XML output, provided the XML objects
 	 * being serialized are annotated to make use of the @{link XmlCDataAdapter}.
 	 * 
-	 * @param useCDATASections
-	 * @throws XmlException
+	 * @param useCDataSections
 	 */
-	void setUseCDATASections(boolean useCDATASections) throws XmlException {
+	void setUseCDATASections(boolean useCDataSections) {
 
-		try {
-			marshaller.setProperty(CHARACTER_ESCAPE_HANDLER, useCDATASections ?
-					new XmlCDataEscapeHandler() : null)
-		}
-		catch (PropertyException ex) {
-			throw new XmlException(
-					"Unable to ${useCDATASections ? 'enable' : 'disable'} the use of CDATA sections", ex)
-		}
+		marshaller.setProperty(CHARACTER_ESCAPE_HANDLER, useCDataSections ? new XmlCDataEscapeHandler() : null)
 	}
 
 	/**
 	 * Marshalls the given XML to the given file.
 	 * 
-	 * @param xmlroot Object representing the root element of the resulting XML
-	 * 				  document.
+	 * @param xmlRoot Object representing the root element of the resulting XML
+	 *                document.
 	 * @param output  File to write the output to.
-	 * @throws XmlException If an error occurred during marshalling, or at least
-	 * 		   one schema was set against the marshaller and the output didn't
-	 * 		   conform to the schema.
+	 * @throws XmlValidationException If at least one schema has been added to
+	 *         this writer and the output didn't conform to the schema.
 	 */
-	void writeXMLData(T xmlroot, File output) throws XmlException {
+	void write(T xmlRoot, File output) throws XmlValidationException {
 
-		try {
-			writeXMLData(xmlroot, new BufferedWriter(new FileWriter(output)))
-		}
-		catch (IOException ex) {
-			throw new XmlException('Output file cannot be written', ex)
-		}
+		write(xmlRoot, new BufferedWriter(new FileWriter(output)))
 	}
 
 	/**
 	 * Marshalls the given XML to the given output stream.
 	 * 
-	 * @param xmlroot Object representing the root element of the resulting XML
-	 * 				  document.
+	 * @param xmlRoot Object representing the root element of the resulting XML
+	 *                document.
 	 * @param output  Stream to write the output to.
-	 * @throws XmlException If an error occurred during marshalling, or at least
-	 * 		   one schema was set against the marshaller and the output didn't
-	 * 		   conform to the schema.
+	 * @throws XmlValidationException If at least one schema has been added to
+	 *         this writer and the output didn't conform to the schema.
 	 */
-	void writeXMLData(T xmlroot, OutputStream output) throws XmlException {
+	void write(T xmlRoot, OutputStream output) throws XmlValidationException {
 
-		writeXMLData(xmlroot, new OutputStreamWriter(output))
+		write(xmlRoot, new OutputStreamWriter(output))
 	}
 
 	/**
 	 * Marshalls the given XML to the given writer.
 	 * 
-	 * @param xmlroot Object representing the root element of the resulting XML
-	 * 				  document.
+	 * @param xmlRoot Object representing the root element of the resulting XML
+	 *                document.
 	 * @param output  File to write the output to.
-	 * @throws XmlException If an error occurred during marshalling, or at least
-	 * 		   one schema was set against the marshaller and the output didn't
-	 * 		   conform to the schema.
+	 * @throws XmlValidationException If at least one schema has been added to
+	 *         this writer and the output didn't conform to the schema.
 	 */
-	void writeXMLData(T xmlroot, Writer output) throws XmlException {
+	void write(T xmlRoot, Writer output) throws XmlValidationException {
 
-		try {
-			// Combine and apply schemas to the marshaller
-			if (!schemaBuilt && !sources) {
-				marshaller.schema       = buildValidatingSchema()
-				marshaller.eventHandler = new ValidationEventCollector()
-				schemaBuilt = true
-			}
-
-			// Marshall
-			marshaller.marshal(xmlroot, output)
-
-			// Check for validation errors (if validating)
-			if (marshaller.schema) {
-				def vec = (ValidationEventCollector)marshaller.eventHandler
-				if (vec.hasEvents()) {
-					def eventList = new StringBuilder()
-					vec.events.each { event -> eventList << "${event.message}\n" }
-					throw new XmlException(
-							"Validation errors were detected in the output: ${eventList.toString().trim()}")
-				}
-			}
+		// Combine and apply schemas to the marshaller
+		if (!schemaBuilt && !sources) {
+			marshaller.schema       = buildValidatingSchema()
+			marshaller.eventHandler = new ValidationEventCollector()
+			schemaBuilt = true
 		}
-		catch (SAXException ex) {
-			throw new XmlException('An error occurred when processing the validating schemas', ex)
-		}
-		catch (JAXBException ex) {
-			throw new XmlException('An error occurred during marshalling', ex)
+
+		// Marshall
+		marshaller.marshal(xmlRoot, output)
+
+		// Check for validation errors (if validating)
+		if (marshaller.schema) {
+			def vec = marshaller.eventHandler
+			if (vec.events) {
+				throw new XmlValidationException(
+						"Validation errors were detected in the output: ${vec.events.join(', ')}")
+			}
 		}
 	}
 }

@@ -4,7 +4,11 @@ Changelog
 
 ### 2.0.0
  - Change case of classes from XML to Xml
-   [#11](https://github.com/ultraq/jaxb-utilities/issues/11))
+   ([#11](https://github.com/ultraq/jaxb-utilities/issues/11))
+ - Stopped wrapping every exception with `XmlException`
+   ([#12](https://github.com/ultraq/jaxb-utilities/issues/12))
+ - Read/Write methods of the `XmlReader`/`XmlWriter` classes renamed to `read`/`write`
+   respectively
 
 ### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy

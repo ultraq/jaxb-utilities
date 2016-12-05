@@ -17,31 +17,20 @@
 package nz.net.ultraq.jaxb
 
 /**
- * Wrapper for any exceptions that may arise during the XML transformating
- * phase.
+ * Exception thrown when validation schemas are in play for read/write
+ * operations and errors occur during said operations.
  * 
  * @author Emanuel Rabina
  */
-class XmlException extends RuntimeException {
+class XmlValidationException extends RuntimeException {
 
 	/**
 	 * Constructor, generates a new exception with the given message.
 	 * 
 	 * @param message Exception message to use.
 	 */
-	protected XmlException(String message) {
+	XmlValidationException(String message) {
 
 		super(message)
-	}
-
-	/**
-	 * Constructor, wraps the original exception in this unchecked type.
-	 * 
-	 * @param message Error message to accompany the exception.
-	 * @param cause The cause for this exception to be raised.
-	 */
-	protected XmlException(String message, Exception cause) {
-
-		super(message, cause)
 	}
 }
