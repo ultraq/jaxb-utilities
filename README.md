@@ -14,7 +14,7 @@ Installation
 ------------
 
 Minimum of Java 8 required.  Joda Time 2 also required if using any of the Joda
-Time adapters ([XmlDateTimeAdapter](#xmldatetimeadapter) or [XmlLocalDateAdapter](#xmllocaldateadapter)).
+Time adapters ([JodaDateTimeAdapter](#jodadatetimeadapter) or [JodaLocalDateAdapter](#jodalocaldateadapter)).
 
 ### Standalone distribution
 Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases/latest),
@@ -63,7 +63,7 @@ xmlWriter.write(instance, new File("Output.xml"));
 Adapters
 --------
 
-### XmlCDataAdapter
+### CDataAdapter
 
 Used in conjunction with `XmlWriter` and its `setUseCDataSections()` method,
 causes JAXB to write CDATA sections instead of the usual XML-escaped strings
@@ -79,7 +79,7 @@ property you want to be converted into a CDATA-aware string instead:
     <xsd:appinfo>
       <jxb:property>
         <xjc:javaType
-          adapter="nz.net.ultraq.jaxb.adapters.XmlCDataAdapter"
+          adapter="nz.net.ultraq.jaxb.adapters.CDataAdapter"
           name="java.lang.String"/>
       </jxb:property>
     </xsd:appinfo>
@@ -91,7 +91,7 @@ Alternatively, to have JAXB write CDATA sections into XML files from your
 existing Java classes, annotate the string property like so:
 
 ```java
-@XmlJavaTypeAdapter(XmlCDataAdapter.class)
+@XmlJavaTypeAdapter(CDataAdapter.class)
 protected String htmlContent;
 ```
 
@@ -112,7 +112,7 @@ will wrap the element you've annotated in a CDATA section:
 ]]></html-content>
 ```
 
-### XmlDateTimeAdapter
+### JodaDateTimeAdapter
 
 Marshal/unmarshal XML dates/times to the [Joda](http://www.joda.org/joda-time/)
 `DateTime` object.
@@ -126,7 +126,7 @@ property you want to be converted into a Joda `DateTime` instead:
     <xsd:appinfo>
       <jxb:property>
         <xjc:javaType
-          adapter="nz.net.ultraq.jaxb.adapters.XmlDateTimeAdapter"
+          adapter="nz.net.ultraq.jaxb.adapters.JodaDateTimeAdapter"
           name="org.joda.time.DateTime"/>
       </jxb:property>
     </xsd:appinfo>
@@ -138,13 +138,13 @@ Alternatively, to have existing Java classes that use Joda `DateTime` map to XML
 date/time, annotate your date properties like so:
 
 ```java
-@XmlJavaTypeAdapter(XmlDateTimeAdapter.class)
+@XmlJavaTypeAdapter(JodaDateTimeAdapter.class)
 @XmlSchemaType(name = "date")
 private DateTime date;
 ```
 
-### XmlLocalDateAdapter
+### JodaLocalDateAdapter
 
-Similar usage to the [XmlDateTimeAdapter](#xmldatetimeadapter), instead using
-Joda LocalDate objects.  Just swap `XmlDateTimeAdapter` for `XmlLocalDateAdapter`
+Similar usage to the [JodaDateTimeAdapter](#jodadatetimeadapter), instead using
+Joda LocalDate objects.  Just swap `JodaDateTimeAdapter` for `JodaLocalDateAdapter`
 in the examples above.

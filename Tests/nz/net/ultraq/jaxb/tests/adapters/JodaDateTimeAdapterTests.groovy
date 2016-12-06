@@ -16,22 +16,21 @@
 
 package nz.net.ultraq.jaxb.tests.adapters
 
-import nz.net.ultraq.jaxb.adapters.XmlDateTimeAdapter
+import nz.net.ultraq.jaxb.adapters.JodaDateTimeAdapter
 
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.junit.Before
 import org.junit.Test
-import static org.junit.Assert.*
 
 /**
  * Tests for the Joda LocalDate / XML Date adapter.
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XmlDateTimeAdapterTests {
+class JodaDateTimeAdapterTests {
 
-	private XmlDateTimeAdapter xmlDateTimeAdapter
+	private JodaDateTimeAdapter jodaDateTimeAdapter
 
 	/**
 	 * Test setup.
@@ -39,7 +38,7 @@ class XmlDateTimeAdapterTests {
 	@Before
 	void before() {
 
-		this.xmlDateTimeAdapter = new XmlDateTimeAdapter()
+		this.jodaDateTimeAdapter = new JodaDateTimeAdapter()
 	}
 
 	/**
@@ -49,8 +48,8 @@ class XmlDateTimeAdapterTests {
 	void testMarshalDate() {
 
 		def dateTime = new DateTime(2013, 8, 21, 12, 12, 12, 0, DateTimeZone.forOffsetHours(2))
-		def marshalledValue = xmlDateTimeAdapter.marshal(dateTime)
-		assertEquals('2013-08-21T12:12:12+02:00', marshalledValue)
+		def marshalledValue = jodaDateTimeAdapter.marshal(dateTime)
+		assert '2013-08-21T12:12:12+02:00' == marshalledValue
 	}
 
 	/**
@@ -59,8 +58,8 @@ class XmlDateTimeAdapterTests {
 	@Test
 	void testMarshalNull() {
 
-		def marshalledValue = xmlDateTimeAdapter.marshal(null)
-		assertNull(marshalledValue)
+		def marshalledValue = jodaDateTimeAdapter.marshal(null)
+		assert marshalledValue == null
 	}
 
 	/**
@@ -69,9 +68,9 @@ class XmlDateTimeAdapterTests {
 	@Test
 	void testUnmarshalNoTz() {
 
-		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T12:12:12')
+		def dateTime = jodaDateTimeAdapter.unmarshal('2013-08-21T12:12:12')
 		def expectedDateTime = new DateTime(2013, 8, 21, 12, 12, 12, 0)
-		assertEquals(expectedDateTime.toString(), dateTime.toString())
+		assert expectedDateTime.toString() == dateTime.toString()
 	}
 
 	/**
@@ -80,8 +79,8 @@ class XmlDateTimeAdapterTests {
 	@Test
 	void testUnmarshalNull() {
 
-		def unmarshalledValue = xmlDateTimeAdapter.unmarshal(null)
-		assertNull(unmarshalledValue)
+		def unmarshalledValue = jodaDateTimeAdapter.unmarshal(null)
+		assert unmarshalledValue == null
 	}
 
 	/**
@@ -90,9 +89,9 @@ class XmlDateTimeAdapterTests {
 	@Test
 	void testUnmarshalUTC() {
 
-		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T10:10:10Z')
+		def dateTime = jodaDateTimeAdapter.unmarshal('2013-08-21T10:10:10Z')
 		def expectedDateTime = new DateTime(2013, 8, 21, 10, 10, 10, 0, DateTimeZone.UTC)
-		assertEquals(expectedDateTime.toString(), dateTime.toString())
+		assert expectedDateTime.toString() == dateTime.toString()
 	}
 
 	/**
@@ -101,8 +100,8 @@ class XmlDateTimeAdapterTests {
 	@Test
 	void testUnmarshalWithZone() {
 
-		def dateTime = xmlDateTimeAdapter.unmarshal('2013-08-21T06:10:08+02:00')
+		def dateTime = jodaDateTimeAdapter.unmarshal('2013-08-21T06:10:08+02:00')
 		def expectedDateTime = new DateTime(2013, 8, 21, 6, 10, 8, 0, DateTimeZone.forOffsetHours(2))
-		assertEquals(expectedDateTime.toString(), dateTime.toString())
+		assert expectedDateTime.toString() == dateTime.toString()
 	}
 }

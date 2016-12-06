@@ -1,5 +1,5 @@
 /* 
- * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2007, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,31 +16,30 @@
 
 package nz.net.ultraq.jaxb.adapters
 
-import javax.xml.bind.annotation.adapters.XmlAdapter
+import org.joda.time.DateTime
 
-import org.joda.time.LocalDate
-import org.joda.time.format.DateTimeFormatterBuilder
-import org.joda.time.format.ISODateTimeFormat
+import javax.xml.bind.DatatypeConverter
+import javax.xml.bind.annotation.adapters.XmlAdapter
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
- * {@link LocalDate} object.
+ * {@link DateTime} object.
  * 
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XmlLocalDateAdapter extends XmlAdapter<String,LocalDate> {
+class JodaDateTimeAdapter extends XmlAdapter<String, DateTime> {
 
 	/**
-	 * Converts a Joda LocalDate to an XML/ISO8601 date/time string.
+	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
 	 * 
 	 * @param value
 	 * @return XML date/time string.
 	 */
 	@Override
-	String marshal(LocalDate value) {
+	String marshal(DateTime value) {
 
-		return value ? ISODateTimeFormat.date().withOffsetParsed().print(value) : null
+		return value ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
 	}
 
 	/**
@@ -50,17 +49,8 @@ class XmlLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 * @return Joda DateTime.
 	 */
 	@Override
-	LocalDate unmarshal(String value) {
+	DateTime unmarshal(String value) {
 
-		return value ?
-			new DateTimeFormatterBuilder()
-				.append(ISODateTimeFormat.dateParser())
-				.appendOptional(new DateTimeFormatterBuilder()
-					.appendTimeZoneOffset('Z', true, 2, 4)
-					.toFormatter()
-					.getParser())
-				.toFormatter()
-				.parseLocalDate(value) :
-			null
+		return value ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
 	}
 }

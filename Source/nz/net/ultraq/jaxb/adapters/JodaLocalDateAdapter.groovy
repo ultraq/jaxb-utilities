@@ -1,5 +1,5 @@
 /* 
- * Copyright 2007, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,30 +16,31 @@
 
 package nz.net.ultraq.jaxb.adapters
 
-import org.joda.time.DateTime
-
-import javax.xml.bind.DatatypeConverter
 import javax.xml.bind.annotation.adapters.XmlAdapter
+
+import org.joda.time.LocalDate
+import org.joda.time.format.DateTimeFormatterBuilder
+import org.joda.time.format.ISODateTimeFormat
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
- * {@link DateTime} object.
+ * {@link LocalDate} object.
  * 
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XmlDateTimeAdapter extends XmlAdapter<String, DateTime> {
+class JodaLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 
 	/**
-	 * Converts a Joda DateTime to an XML/ISO8601 date/time string.
+	 * Converts a Joda LocalDate to an XML/ISO8601 date/time string.
 	 * 
 	 * @param value
 	 * @return XML date/time string.
 	 */
 	@Override
-	String marshal(DateTime value) {
+	String marshal(LocalDate value) {
 
-		return value ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
+		return value ? ISODateTimeFormat.date().withOffsetParsed().print(value) : null
 	}
 
 	/**
@@ -49,8 +50,17 @@ class XmlDateTimeAdapter extends XmlAdapter<String, DateTime> {
 	 * @return Joda DateTime.
 	 */
 	@Override
-	DateTime unmarshal(String value) {
+	LocalDate unmarshal(String value) {
 
-		return value ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
+		return value ?
+			new DateTimeFormatterBuilder()
+				.append(ISODateTimeFormat.dateParser())
+				.appendOptional(new DateTimeFormatterBuilder()
+					.appendTimeZoneOffset('Z', true, 2, 4)
+					.toFormatter()
+					.getParser())
+				.toFormatter()
+				.parseLocalDate(value) :
+			null
 	}
 }

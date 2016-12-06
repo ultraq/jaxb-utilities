@@ -16,21 +16,20 @@
 
 package nz.net.ultraq.jaxb.tests.adapters
 
-import nz.net.ultraq.jaxb.adapters.XmlLocalDateAdapter
+import nz.net.ultraq.jaxb.adapters.JodaLocalDateAdapter
 
 import org.joda.time.LocalDate
 import org.junit.Before
 import org.junit.Test
-import static org.junit.Assert.*
 
 /**
  * Tests for the Joda LocalDate / XML Date adapter.
  * 
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
  */
-class XmlLocalDateAdapterTests {
+class JodaLocalDateAdapterTests {
 
-	private XmlLocalDateAdapter xmlLocalDateAdapter
+	private JodaLocalDateAdapter jodaLocalDateAdapter
 
 	/**
 	 * Test setup.
@@ -38,7 +37,7 @@ class XmlLocalDateAdapterTests {
 	@Before
 	void before() {
 
-		this.xmlLocalDateAdapter = new XmlLocalDateAdapter()
+		this.jodaLocalDateAdapter = new JodaLocalDateAdapter()
 	}
 
 	/**
@@ -48,8 +47,8 @@ class XmlLocalDateAdapterTests {
 	void testMarshalDate() {
 
 		def localDate = new LocalDate(2013, 8, 21)
-		def marshalledValue = xmlLocalDateAdapter.marshal(localDate)
-		assertEquals('2013-08-21', marshalledValue)
+		def marshalledValue = jodaLocalDateAdapter.marshal(localDate)
+		assert '2013-08-21' == marshalledValue
 	}
 
 	/**
@@ -58,8 +57,8 @@ class XmlLocalDateAdapterTests {
 	@Test
 	void testMarshalNull() {
 
-		def marshalledValue = xmlLocalDateAdapter.marshal(null)
-		assertNull(marshalledValue)
+		def marshalledValue = jodaLocalDateAdapter.marshal(null)
+		assert marshalledValue == null
 	}
 
 	/**
@@ -68,9 +67,9 @@ class XmlLocalDateAdapterTests {
 	@Test
 	void testUnmarshalNoTz() {
 
-		def localDate = xmlLocalDateAdapter.unmarshal('2013-08-21')
+		def localDate = jodaLocalDateAdapter.unmarshal('2013-08-21')
 		def expectedDate = new LocalDate(2013, 8, 21)
-		assertEquals(expectedDate, localDate)
+		assert expectedDate == localDate
 	}
 
 	/**
@@ -79,8 +78,8 @@ class XmlLocalDateAdapterTests {
 	@Test
 	void testUnmarshalNull() {
 
-		def unmarshalledValue = xmlLocalDateAdapter.unmarshal(null)
-		assertNull(unmarshalledValue)
+		def unmarshalledValue = jodaLocalDateAdapter.unmarshal(null)
+		assert unmarshalledValue == null
 	}
 
 	/**
@@ -89,9 +88,9 @@ class XmlLocalDateAdapterTests {
 	@Test
 	void testUnmarshalWithZone() {
 
-		def localDate = xmlLocalDateAdapter.unmarshal('2013-08-21+06:00')
+		def localDate = jodaLocalDateAdapter.unmarshal('2013-08-21+06:00')
 		def expectedDate = new LocalDate(2013, 8, 21)
-		assertEquals(expectedDate, localDate)
+		assert expectedDate == localDate
 	}
 
 	/**
@@ -100,8 +99,8 @@ class XmlLocalDateAdapterTests {
 	@Test
 	void testUnmarshalUTC() {
 
-		def localDate = xmlLocalDateAdapter.unmarshal('2013-08-21Z')
+		def localDate = jodaLocalDateAdapter.unmarshal('2013-08-21Z')
 		def expectedDate = new LocalDate(2013, 8, 21)
-		assertEquals(expectedDate, localDate)
+		assert expectedDate == localDate
 	}
 }

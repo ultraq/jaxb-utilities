@@ -103,13 +103,13 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 
 	/**
 	 * Enable/Disable CDATA sections in the XML output, provided the XML objects
-	 * being serialized are annotated to make use of the @{link XmlCDataAdapter}.
+	 * being serialized are annotated to make use of the @{link CDataAdapter}.
 	 * 
 	 * @param useCDataSections
 	 */
 	void setUseCDataSections(boolean useCDataSections) {
 
-		marshaller.setProperty(CHARACTER_ESCAPE_HANDLER, useCDataSections ? new XmlCDataEscapeHandler() : null)
+		marshaller.setProperty(CHARACTER_ESCAPE_HANDLER, useCDataSections ? new CDataEscapeHandler() : null)
 	}
 
 	/**

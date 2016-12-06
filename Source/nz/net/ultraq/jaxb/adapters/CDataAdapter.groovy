@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter
  * 
  * @author Emanuel Rabina
  */
-class XmlCDataAdapter extends XmlAdapter<String, String> {
+class CDataAdapter extends XmlAdapter<String, String> {
 
 	/**
 	 * Wraps the value in a CDATA section.
