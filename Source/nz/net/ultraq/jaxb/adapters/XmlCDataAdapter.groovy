@@ -27,22 +27,22 @@ import javax.xml.bind.annotation.adapters.XmlAdapter
 class XmlCDataAdapter extends XmlAdapter<String, String> {
 
 	/**
-	 * Wraps <tt>v</tt> in a CDATA section.
+	 * Wraps the value in a CDATA section.
 	 * 
 	 * @param value
-	 * @return <tt>&lt;![CDATA[ + v + ]]&gt;</tt>
+	 * @return {@code <![CDATA[ + value + ]]>}
 	 */
 	@Override
 	String marshal(String value) {
 
-		return "<![CDATA[$value]]>"
+		return "<![CDATA[${value}]]>"
 	}
 
 	/**
-	 * Nothing special, returns <tt>v</tt> as is.
+	 * Nothing special, returns the value as is.
 	 * 
 	 * @param value
-	 * @return <tt>v</tt>
+	 * @return The value.
 	 */
 	@Override
 	String unmarshal(String value) {

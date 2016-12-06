@@ -13,8 +13,8 @@ manipulate XML via JAXB.
 Installation
 ------------
 
-Minimum of Java 7 required.  Joda Time 2 also required if using any of the Joda
-Time adapters ([XMLDateTimeAdapter](#xmldatetimeadapter), [XMLLocalDateAdapter](#xmllocaldateadapter)).
+Minimum of Java 8 required.  Joda Time 2 also required if using any of the Joda
+Time adapters ([XmlDateTimeAdapter](#xmldatetimeadapter) or [XmlLocalDateAdapter](#xmllocaldateadapter)).
 
 ### Standalone distribution
 Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases/latest),
@@ -32,7 +32,7 @@ Add a dependency to your project with the following co-ordinates:
 Marshalling/Unmarshalling
 -------------------------
 
-### XMLReader
+### XmlReader
 
 Wraps the job of unmarshalling XML content into a Java object, adding methods
 for enabling validation against a schema or schemas during unmarshalling.
@@ -40,12 +40,12 @@ for enabling validation against a schema or schemas during unmarshalling.
 Example usage:
 
 ```java
-XMLReader<YourClass> xmlReader = new XMLReader<>(YourClass.class);
+XmlReader<YourClass> xmlReader = new XmlReader<>(YourClass.class);
 xmlReader.addValidatingSchema(new File("YourSchema.xsd"));
-YourClass instance = xmlReader.readXMLData(source);
+YourClass instance = xmlReader.read(source);
 ```
 
-### XMLWriter
+### XmlWriter
 
 Wraps the job of marshalling Java objects back into XML files, adding methods
 for enabling CDATA sections, mapping namespaces to custom prefixes, and
@@ -54,18 +54,18 @@ validating against a schema or schemas during marshalling.
 Example usage:
 
 ```java
-XMLWriter<YourClass> xmlWriter = new XMLWriter<>(YourClass.class);
+XmlWriter<YourClass> xmlWriter = new XmlWriter<>(YourClass.class);
 xmlWriter.setFormatOutput(true);
-xmlWriter.writeXMLData(instance, new File("Output.xml"));
+xmlWriter.write(instance, new File("Output.xml"));
 ```
 
 
 Adapters
 --------
 
-### XMLCDataAdapter
+### XmlCDataAdapter
 
-Used in conjunction with `XMLWriter` and its `setUseCDATASections()` method,
+Used in conjunction with `XmlWriter` and its `setUseCDataSections()` method,
 causes JAXB to write CDATA sections instead of the usual XML-escaped strings
 that it produces.  Handy when your string content contains lots of XML-reserved
 characters (eg: HTML or XML content).
@@ -91,19 +91,19 @@ Alternatively, to have JAXB write CDATA sections into XML files from your
 existing Java classes, annotate the string property like so:
 
 ```java
-@XmlJavaTypeAdapter(XMLCDataAdapter.class)
+@XmlJavaTypeAdapter(XmlCDataAdapter.class)
 protected String htmlContent;
 ```
 
-Then, set the `XMLWriter` to output CDATA sections:
+Then, set the `XmlWriter` to output CDATA sections:
 
 ```java
-XMLWriter<YourClass> xmlWriter = new XMLWriter<>();
+XmlWriter<YourClass> xmlWriter = new XmlWriter<>();
 xmlWriter.setUseCDATASections(true);
 ```
 
-The next time you use one of `XMLWriter`'s `writeXMLData` methods, the resulting
-XML will wrap the element you've annotated in a CDATA section:
+The next time you use one of `XmlWriter`'s `write` methods, the resulting XML
+will wrap the element you've annotated in a CDATA section:
 
 ```xml
 <html-content><![CDATA[
@@ -112,7 +112,7 @@ XML will wrap the element you've annotated in a CDATA section:
 ]]></html-content>
 ```
 
-### XMLDateTimeAdapter
+### XmlDateTimeAdapter
 
 Marshal/unmarshal XML dates/times to the [Joda](http://www.joda.org/joda-time/)
 `DateTime` object.
@@ -138,12 +138,13 @@ Alternatively, to have existing Java classes that use Joda `DateTime` map to XML
 date/time, annotate your date properties like so:
 
 ```java
-@XmlJavaTypeAdapter(XMLDateTimeAdapter.class)
+@XmlJavaTypeAdapter(XmlDateTimeAdapter.class)
 @XmlSchemaType(name = "date")
 private DateTime date;
 ```
 
-### XMLLocalDateAdapter
+### XmlLocalDateAdapter
 
-Similar usage to the [XMLDateTimeAdapter](#xmldatetimeadapter), just swap `XMLDateTimeAdapter`
-for `XMLLocalDateAdapter`.
+Similar usage to the [XmlDateTimeAdapter](#xmldatetimeadapter), instead using
+Joda LocalDate objects.  Just swap `XmlDateTimeAdapter` for `XmlLocalDateAdapter`
+in the examples above.

@@ -34,7 +34,7 @@ project.contributors = [
 		name:  'David Karlsen',
 		email: 'david@davidkarlsen.com',
 		roles: ['developer'],
-		contribution: 'Added the XMLLocalDateAdapter, introduced me to Travis CI, fixed the XMLDateTimeAdapter'
+		contribution: 'Added the XmlLocalDateAdapter, introduced me to Travis CI, fixed the XmlDateTimeAdapter'
 	]
 ]
 
@@ -47,4 +47,8 @@ dependencies {
 	testCompile(
 		'junit:junit:4.12'
 	)
+}
+
+groovydoc {
+	link('http://www.joda.org/joda-time/apidocs/', 'org.joda.time.')
 }

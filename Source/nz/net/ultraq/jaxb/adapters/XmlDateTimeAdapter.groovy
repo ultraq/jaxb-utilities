@@ -22,7 +22,8 @@ import javax.xml.bind.DatatypeConverter
 import javax.xml.bind.annotation.adapters.XmlAdapter
 
 /**
- * XML Date/Time adapter to convert between XML DateTime format and the Joda DateTime object.
+ * XML Date/Time adapter to convert between XML DateTime format and the Joda
+ * {@link DateTime} object.
  * 
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
@@ -38,7 +39,7 @@ class XmlDateTimeAdapter extends XmlAdapter<String, DateTime> {
 	@Override
 	String marshal(DateTime value) {
 
-		return value != null ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
+		return value ? DatatypeConverter.printDateTime(value.toGregorianCalendar()) : null
 	}
 
 	/**
@@ -50,6 +51,6 @@ class XmlDateTimeAdapter extends XmlAdapter<String, DateTime> {
 	@Override
 	DateTime unmarshal(String value) {
 
-		return value != null ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
+		return value ? new DateTime(DatatypeConverter.parseDateTime(value)) : null
 	}
 }

@@ -107,7 +107,7 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 	 * 
 	 * @param useCDataSections
 	 */
-	void setUseCDATASections(boolean useCDataSections) {
+	void setUseCDataSections(boolean useCDataSections) {
 
 		marshaller.setProperty(CHARACTER_ESCAPE_HANDLER, useCDataSections ? new XmlCDataEscapeHandler() : null)
 	}

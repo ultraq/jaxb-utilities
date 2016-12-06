@@ -9,6 +9,7 @@ Changelog
    ([#12](https://github.com/ultraq/jaxb-utilities/issues/12))
  - Read/Write methods of the `XmlReader`/`XmlWriter` classes renamed to `read`/`write`
    respectively
+ - Minimum Java version moved to Java 8
 
 ### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy

@@ -24,7 +24,7 @@ import org.joda.time.format.ISODateTimeFormat
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
- * LocalDate object.
+ * {@link LocalDate} object.
  * 
  * @author Emanuel Rabina
  * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen<a>
@@ -38,9 +38,9 @@ class XmlLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	 * @return XML date/time string.
 	 */
 	@Override
-	public String marshal(LocalDate value) {
+	String marshal(LocalDate value) {
 
-		return value != null ? ISODateTimeFormat.date().withOffsetParsed().print(value) : null;
+		return value ? ISODateTimeFormat.date().withOffsetParsed().print(value) : null
 	}
 
 	/**
@@ -52,7 +52,7 @@ class XmlLocalDateAdapter extends XmlAdapter<String,LocalDate> {
 	@Override
 	LocalDate unmarshal(String value) {
 
-		return value != null ?
+		return value ?
 			new DateTimeFormatterBuilder()
 				.append(ISODateTimeFormat.dateParser())
 				.appendOptional(new DateTimeFormatterBuilder()
