@@ -98,7 +98,8 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 	 */
 	void setSchemaLocation(String namespace, String url) {
 
-		marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "${namespace} ${url}")
+		// Value can't be a GString because of internal checks against the type
+		marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, namespace + ' ' + url)
 	}
 
 	/**
