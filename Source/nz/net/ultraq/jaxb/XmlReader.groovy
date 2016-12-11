@@ -107,7 +107,7 @@ class XmlReader<T> extends XmlValidatingProcessor {
 	T read(Reader input) throws XmlValidationException {
 
 		// Combine and apply schemas to the unmarshaller
-		if (!schemaBuilt && !sources) {
+		if (!schemaBuilt && sources) {
 			unmarshaller.schema       = buildValidatingSchema()
 			unmarshaller.eventHandler = new ValidationEventCollector()
 			schemaBuilt = true

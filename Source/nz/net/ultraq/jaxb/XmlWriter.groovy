@@ -153,7 +153,7 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 	void write(T xmlRoot, Writer output) throws XmlValidationException {
 
 		// Combine and apply schemas to the marshaller
-		if (!schemaBuilt && !sources) {
+		if (!schemaBuilt && sources) {
 			marshaller.schema       = buildValidatingSchema()
 			marshaller.eventHandler = new ValidationEventCollector()
 			schemaBuilt = true
