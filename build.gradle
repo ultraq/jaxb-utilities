@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-apply plugin: 'groovy'
-apply plugin: 'maven'
-apply from: 'https://raw.github.com/ultraq/gradle-support/1.4.0/gradle-support.gradle'
-apply from: 'https://raw.github.com/ultraq/gradle-support/1.4.0/maven-support.gradle'
-apply from: 'https://raw.github.com/ultraq/gradle-support/1.4.0/bundle.gradle'
+plugins {
+	id 'groovy'
+	id 'maven'
+}
+apply from: 'https://raw.github.com/ultraq/gradle-support/2.0.0/gradle-support.gradle'
+apply from: 'https://raw.github.com/ultraq/gradle-support/2.0.0/maven-support.gradle'
+apply from: 'https://raw.github.com/ultraq/gradle-support/2.0.0/bundle.gradle'
 
 //project.name      = 'JAXB Utilities'
 project.description = 'Utility classes to make XML manipulation with JAXB a tad easier'
@@ -41,7 +43,7 @@ project.contributors = [
 dependencies {
 	compile(
 		'com.sun.xml.bind:jaxb-impl:2.2.7',
-		'org.codehaus.groovy:groovy:2.4.7'
+		'org.codehaus.groovy:groovy:2.4.12'
 	)
 	compile('joda-time:joda-time:2.9.6', optional)
 	testCompile(
