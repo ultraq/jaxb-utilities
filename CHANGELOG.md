@@ -12,6 +12,7 @@ Changelog
  - Minimum Java version moved to Java 8
  - Renamed the adapter classes, dropping the `Xml` prefix in favour of the
    library name, if applicable
+ - Updated JAXB dependencies to work with Java 9
 
 ### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy
