@@ -13,6 +13,7 @@ Changelog
  - Renamed the adapter classes, dropping the `Xml` prefix in favour of the
    library name, if applicable
  - Updated JAXB dependencies to work with Java 9
+ - Updated Joda Time dependency to 2.9.9
 
 ### 1.3.0
  - Moved to using Java 7 and rewritten in Groovy
