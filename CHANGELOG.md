@@ -9,9 +9,9 @@ Changelog
    ([#12](https://github.com/ultraq/jaxb-utilities/issues/12))
  - Read/Write methods of the `XmlReader`/`XmlWriter` classes renamed to `read`/`write`
    respectively
- - Minimum Java version moved to Java 8
  - Renamed the adapter classes, dropping the `Xml` prefix in favour of the
    library name, if applicable
+ - Minimum Java version moved to Java 8
  - Updated JAXB dependencies to work with Java 9
  - Updated Joda Time dependency to 2.9.9
 
