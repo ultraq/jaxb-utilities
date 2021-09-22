@@ -95,7 +95,7 @@ abstract class XmlValidatingProcessor {
 				messages << exception.message
 			}
 		}
-		def schema = schemaFactory.newSchema(sources.toArray(new StreamSource[sources.size()]))
+		def schema = schemaFactory.newSchema(*sources)
 
 		// Report any schema-creation errors
 		if (messages) {

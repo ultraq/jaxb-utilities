@@ -17,22 +17,19 @@
 plugins {
 	id 'java-library'
 	id 'groovy'
-	id 'codenarc'
 	id 'jacoco'
 	id 'com.github.kt3k.coveralls' version '2.10.2'
 	id 'distribution'
 	id 'maven-publish'
 }
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.4.0/gradle-support.gradle'
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.4.0/maven-publish-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/gradle-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/maven-publish-support.gradle'
 
 description = 'Utility classes to make XML manipulation with JAXB a tad easier'
+version = '2.1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
-
-group    = 'nz.net.ultraq.jaxb'
-artifact = 'jaxb-utilities'
-version  = '2.1.0-SNAPSHOT'
-year     = '2007'
+group = 'nz.net.ultraq.jaxb'
+year = '2007'
 
 java {
 	registerFeature('jodaTimeSupport') {

@@ -55,9 +55,6 @@ class XmlReader<T> extends XmlValidatingProcessor {
 		unmarshaller = jaxbcontext.createUnmarshaller()
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	void clearValidatingSchemas() {
 
@@ -103,7 +100,6 @@ class XmlReader<T> extends XmlValidatingProcessor {
 	 * @throws XmlValidationException If at least one schema has been added to
 	 *         this reader and the input didn't conform to the schema.
 	 */
-	@SuppressWarnings("unchecked")
 	T read(Reader input) throws XmlValidationException {
 
 		// Combine and apply schemas to the unmarshaller

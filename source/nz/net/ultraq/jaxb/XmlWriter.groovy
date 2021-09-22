@@ -57,9 +57,6 @@ class XmlWriter<T> extends XmlValidatingProcessor {
 		marshaller = jaxbcontext.createMarshaller()
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	void clearValidatingSchemas() {
 

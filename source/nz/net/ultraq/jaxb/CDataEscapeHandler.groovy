@@ -26,7 +26,7 @@ import org.glassfish.jaxb.core.marshaller.MinimumEscapeHandler
  */
 class CDataEscapeHandler implements CharacterEscapeHandler {
 
-	private static final CharacterEscapeHandler defaultHandler = MinimumEscapeHandler.theInstance
+	private static final CharacterEscapeHandler ESCAPE_HANDLER = MinimumEscapeHandler.theInstance
 
 	/**
 	 * Perform escaping as normal except on CDATA blocks.
@@ -50,6 +50,6 @@ class CDataEscapeHandler implements CharacterEscapeHandler {
 		}
 
 		// Otherwise, escape as normal
-		defaultHandler.escape(ch, start, length, isAttVal, out)
+		ESCAPE_HANDLER.escape(ch, start, length, isAttVal, out)
 	}
 }

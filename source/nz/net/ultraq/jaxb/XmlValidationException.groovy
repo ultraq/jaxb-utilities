@@ -16,21 +16,14 @@
 
 package nz.net.ultraq.jaxb
 
+import groovy.transform.InheritConstructors
+
 /**
  * Exception thrown when validation schemas are in play for read/write
  * operations and errors occur during said operations.
  * 
  * @author Emanuel Rabina
  */
+@InheritConstructors
 class XmlValidationException extends RuntimeException {
-
-	/**
-	 * Constructor, generates a new exception with the given message.
-	 * 
-	 * @param message Exception message to use.
-	 */
-	XmlValidationException(String message) {
-
-		super(message)
-	}
 }
