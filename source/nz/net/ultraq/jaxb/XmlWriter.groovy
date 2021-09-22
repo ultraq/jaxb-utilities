@@ -16,11 +16,10 @@
 
 package nz.net.ultraq.jaxb
 
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper
-
-import javax.xml.bind.JAXBContext
-import javax.xml.bind.Marshaller
-import javax.xml.bind.util.ValidationEventCollector
+import jakarta.xml.bind.JAXBContext
+import jakarta.xml.bind.Marshaller
+import jakarta.xml.bind.util.ValidationEventCollector
+import org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper
 
 /**
  * XML file marshaller using JAXB to turn JAXB-annotated classes into XML files.

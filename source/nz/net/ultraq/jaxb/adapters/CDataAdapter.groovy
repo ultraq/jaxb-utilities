@@ -16,7 +16,7 @@
 
 package nz.net.ultraq.jaxb.adapters
 
-import javax.xml.bind.annotation.adapters.XmlAdapter
+import jakarta.xml.bind.annotation.adapters.XmlAdapter
 
 /**
  * Special adapter class to marshall certain sections as CDATA text instead of

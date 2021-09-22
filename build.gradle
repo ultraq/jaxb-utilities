@@ -34,17 +34,25 @@ artifact = 'jaxb-utilities'
 version  = '2.1.0-SNAPSHOT'
 year     = '2007'
 
+java {
+	registerFeature('jodaTimeSupport') {
+		usingSourceSet(sourceSets.main)
+	}
+}
+
 dependencies {
-	compile(
-		'com.sun.activation:javax.activation:1.2.0',
-		'com.sun.xml.bind:jaxb-core:2.3.0',
-		'com.sun.xml.bind:jaxb-impl:2.3.0',
-		'javax.xml.bind:jaxb-api:2.3.0',
-		'org.codehaus.groovy:groovy:2.4.12'
+	api(
+		'org.codehaus.groovy:groovy:3.0.9'
 	)
-	compile('joda-time:joda-time:2.9.9', optional)
-	testCompile(
-		'junit:junit:4.12'
+	implementation(
+		'com.sun.xml.bind:jaxb-impl:3.0.1',
+		'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
+	)
+	jodaTimeSupportImplementation(
+		'joda-time:joda-time:2.10.10'
+	)
+	testImplementation(
+		'junit:junit:4.13.2'
 	)
 }
 

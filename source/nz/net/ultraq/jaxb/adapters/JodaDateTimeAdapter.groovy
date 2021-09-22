@@ -18,8 +18,8 @@ package nz.net.ultraq.jaxb.adapters
 
 import org.joda.time.DateTime
 
-import javax.xml.bind.DatatypeConverter
-import javax.xml.bind.annotation.adapters.XmlAdapter
+import jakarta.xml.bind.DatatypeConverter
+import jakarta.xml.bind.annotation.adapters.XmlAdapter
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda
