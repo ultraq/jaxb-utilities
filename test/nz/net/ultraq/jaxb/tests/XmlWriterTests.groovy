@@ -18,8 +18,8 @@ package nz.net.ultraq.jaxb.tests
 
 import nz.net.ultraq.jaxb.XmlWriter
 
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for the XML writer.
@@ -33,15 +33,12 @@ class XmlWriterTests {
 	/**
 	 * Set up the XML writer.
 	 */
-	@Before
+	@BeforeEach
 	void setupXmlWriter() {
 
 		xmlWriter = new XmlWriter<>(XmlTestClass)
 	}
 
-	/**
-	 * 
-	 */
 	@Test
 	void schemaLocationProperty() {
 

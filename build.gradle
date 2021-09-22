@@ -49,8 +49,16 @@ dependencies {
 		'joda-time:joda-time:2.10.10'
 	)
 	testImplementation(
-		'junit:junit:4.13.2'
+		'org.junit.jupiter:junit-jupiter:5.8.0'
 	)
+}
+
+compileGroovy {
+	groovyOptions.optimizationOptions.indy = true
+}
+
+test {
+	useJUnitPlatform()
 }
 
 groovydoc {

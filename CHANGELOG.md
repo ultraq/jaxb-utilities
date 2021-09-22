@@ -2,6 +2,12 @@
 Changelog
 =========
 
+### 2.1.0
+ - Update JAXB to 3.0.1 which are the new Eclipse implementations of the Jakarta
+   XML bindings.  These versions remove the reflective access warnings, which
+   are now errors in Java 16+.
+ - Updated Groovy to 3.0.9
+
 ### 2.0.0
  - Change case of classes from XML to Xml
    ([#11](https://github.com/ultraq/jaxb-utilities/issues/11))

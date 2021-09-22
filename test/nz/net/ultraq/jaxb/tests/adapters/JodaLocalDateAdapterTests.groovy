@@ -19,8 +19,8 @@ package nz.net.ultraq.jaxb.tests.adapters
 import nz.net.ultraq.jaxb.adapters.JodaLocalDateAdapter
 
 import org.joda.time.LocalDate
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 /**
  * Tests for the Joda LocalDate / XML Date adapter.
@@ -34,7 +34,7 @@ class JodaLocalDateAdapterTests {
 	/**
 	 * Test setup.
 	 */
-	@Before
+	@BeforeEach
 	void before() {
 
 		this.jodaLocalDateAdapter = new JodaLocalDateAdapter()

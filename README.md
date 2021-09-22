@@ -8,23 +8,24 @@ JAXB Utilities
 Bits and pieces I use in both personal and work projects whenever I need to
 manipulate XML via JAXB.
 
+
 Installation
 ------------
 
 Minimum of Java 8 required.  Joda Time 2 also required if using any of the Joda
 Time adapters ([JodaDateTimeAdapter](#jodadatetimeadapter) or [JodaLocalDateAdapter](#jodalocaldateadapter)).
 
-### Standalone distribution
-Copy the JAR from [the latest release bundle](https://github.com/ultraq/jaxb-utilities/releases/latest),
-placing it in the classpath of your project, or build the project from the
-source code here on GitHub.
-
 ### For Maven and Maven-compatible dependency managers
+
 Add a dependency to your project with the following co-ordinates:
 
  - GroupId: `nz.net.ultraq.jaxb`
  - ArtifactId: `jaxb-utilities`
  - Version: (as per the badges above)
+
+Check the [project releases](https://github.com/ultraq/jaxb-utilities/releases)
+for a list of available versions.  Each release page also includes a
+downloadable JAR if you want to manually add it to your project classpath.
 
 
 Marshalling/Unmarshalling
