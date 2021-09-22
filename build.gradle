@@ -15,30 +15,24 @@
  */
 
 plugins {
+	id 'java-library'
 	id 'groovy'
-	id 'maven'
+	id 'codenarc'
+	id 'jacoco'
+	id 'com.github.kt3k.coveralls' version '2.10.2'
+	id 'distribution'
+	id 'maven-publish'
 }
-apply from: 'https://raw.github.com/ultraq/gradle-support/2.1.0/gradle-support.gradle'
-apply from: 'https://raw.github.com/ultraq/gradle-support/2.1.0/maven-support.gradle'
-apply from: 'https://raw.github.com/ultraq/gradle-support/2.1.0/bundle.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.4.0/gradle-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.4.0/maven-publish-support.gradle'
 
-//project.name      = 'jaxb-utilities'
-project.description = 'Utility classes to make XML manipulation with JAXB a tad easier'
-project.archivesBaseName = 'jaxb-utilities'
-project.sourceCompatibility = '1.8'
+description = 'Utility classes to make XML manipulation with JAXB a tad easier'
+sourceCompatibility = '1.8'
 
-project.group    = 'nz.net.ultraq.jaxb'
-project.artifact = 'jaxb-utilities'
-project.version  = '2.0.0'
-project.year     = '2007'
-project.contributors = [
-	[
-		name:  'David Karlsen',
-		email: 'david@davidkarlsen.com',
-		roles: ['developer'],
-		contribution: 'Added the XMLLocalDateAdapter, introduced me to Travis CI, fixed the XMLDateTimeAdapter'
-	]
-]
+group    = 'nz.net.ultraq.jaxb'
+artifact = 'jaxb-utilities'
+version  = '2.1.0-SNAPSHOT'
+year     = '2007'
 
 dependencies {
 	compile(
@@ -55,5 +49,5 @@ dependencies {
 }
 
 groovydoc {
-	link('http://www.joda.org/joda-time/apidocs/', 'org.joda.time.')
+	link('https://www.joda.org/joda-time/apidocs/', 'org.joda.time.')
 }
