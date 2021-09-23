@@ -5,8 +5,7 @@ JAXB Utilities
 [![Build Status](https://travis-ci.org/ultraq/jaxb-utilities.svg?branch=master)](https://travis-ci.org/ultraq/jaxb-utilities)
 [![Maven Central](https://img.shields.io/maven-central/v/nz.net.ultraq.jaxb/jaxb-utilities.svg?maxAge=3600)](http://search.maven.org/#search|ga|1|g%3A%22nz.net.ultraq.jaxb%22%20AND%20a%3A%22jaxb-utilities%22)
 
-Bits and pieces I use in both personal and work projects whenever I need to
-manipulate XML via JAXB.
+An alternative API for working with XML files using JAXB.
 
 
 Installation

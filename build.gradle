@@ -25,14 +25,14 @@ plugins {
 apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/gradle-support.gradle'
 apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/maven-publish-support.gradle'
 
-description = 'Utility classes to make XML manipulation with JAXB a tad easier'
+description = 'An alternative API for working with XML files using JAXB'
 version = '2.1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 group = 'nz.net.ultraq.jaxb'
 year = '2007'
 
 java {
-	registerFeature('jodaTimeSupport') {
+	registerFeature('jodaTimeAdapters') {
 		usingSourceSet(sourceSets.main)
 	}
 }
@@ -45,7 +45,7 @@ dependencies {
 		'com.sun.xml.bind:jaxb-impl:3.0.1',
 		'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
 	)
-	jodaTimeSupportImplementation(
+	jodaTimeAdaptersImplementation(
 		'joda-time:joda-time:2.10.10'
 	)
 	testImplementation(
@@ -63,4 +63,12 @@ test {
 
 groovydoc {
 	link('https://www.joda.org/joda-time/apidocs/', 'org.joda.time.')
+}
+
+publishing {
+	publications {
+		library(MavenPublication) {
+			suppressAllPomMetadataWarnings()
+		}
+	}
 }
