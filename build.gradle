@@ -39,9 +39,7 @@ java {
 
 dependencies {
 	api(
-		'org.codehaus.groovy:groovy:3.0.9'
-	)
-	implementation(
+		'org.codehaus.groovy:groovy:3.0.9',
 		'com.sun.xml.bind:jaxb-impl:3.0.1',
 		'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1'
 	)
