@@ -16,11 +16,11 @@
 
 package nz.net.ultraq.jaxb.adapters
 
-import jakarta.xml.bind.annotation.adapters.XmlAdapter
-
 import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.joda.time.format.ISODateTimeFormat
+
+import javax.xml.bind.annotation.adapters.XmlAdapter
 
 /**
  * XML Date/Time adapter to convert between XML DateTime format and the Joda

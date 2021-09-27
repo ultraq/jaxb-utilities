@@ -16,8 +16,8 @@
 
 package nz.net.ultraq.jaxb
 
-import org.glassfish.jaxb.core.marshaller.CharacterEscapeHandler
-import org.glassfish.jaxb.core.marshaller.MinimumEscapeHandler
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler
+import com.sun.xml.bind.marshaller.MinimumEscapeHandler
 
 /**
  * Escape handler to avoid escaping CDATA sections.

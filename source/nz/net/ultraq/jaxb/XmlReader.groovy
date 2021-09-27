@@ -16,10 +16,10 @@
 
 package nz.net.ultraq.jaxb
 
-import jakarta.xml.bind.JAXBContext
-import jakarta.xml.bind.Unmarshaller
-import jakarta.xml.bind.ValidationException
-import jakarta.xml.bind.util.ValidationEventCollector
+import javax.xml.bind.JAXBContext
+import javax.xml.bind.Unmarshaller
+import javax.xml.bind.ValidationException
+import javax.xml.bind.util.ValidationEventCollector
 
 /**
  * XML file unmarshaller using JAXB to turn XML files into instances of their
