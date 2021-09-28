@@ -26,7 +26,7 @@ apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/gradle
 apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/maven-publish-support.gradle'
 
 description = 'An alternative API for working with XML files using JAXB'
-version = '2.1.0-SNAPSHOT'
+version = '2.1.0'
 sourceCompatibility = '1.8'
 group = 'nz.net.ultraq.jaxb'
 year = '2007'
