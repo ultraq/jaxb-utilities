@@ -22,8 +22,8 @@ plugins {
 	id 'distribution'
 	id 'maven-publish'
 }
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/gradle-support.gradle'
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/next/maven-publish-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.0.0/gradle-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.0.0/maven-publish-support.gradle'
 
 description = 'An alternative API for working with XML files using JAXB'
 version = '2.1.0'
