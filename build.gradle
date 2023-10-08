@@ -1,12 +1,12 @@
-/* 
+/*
  * Copyright 2007, Emanuel Rabina (http://www.ultraq.net.nz/)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,41 +18,32 @@ plugins {
 	id 'java-library'
 	id 'groovy'
 	id 'jacoco'
-	id 'com.github.kt3k.coveralls' version '2.12.0'
 	id 'distribution'
 	id 'maven-publish'
 }
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.0.0/gradle-support.gradle'
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.0.0/maven-publish-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.3.1/gradle-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/4.3.1/maven-publish-support.gradle'
 
 description = 'An alternative API for working with XML files using JAXB'
-version = '2.1.0'
-sourceCompatibility = '1.8'
+version = '3.0.0-SNAPSHOT'
 group = 'nz.net.ultraq.jaxb'
 year = '2007'
 
 java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
 	registerFeature('jodaTimeAdapters') {
 		usingSourceSet(sourceSets.main)
 	}
 }
 
 dependencies {
-	api(
-		'org.codehaus.groovy:groovy:3.0.9',
-		'com.sun.xml.bind:jaxb-impl:2.3.5',
-		'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
-	)
-	jodaTimeAdaptersImplementation(
-		'joda-time:joda-time:2.10.10'
-	)
-	testImplementation(
-		'org.junit.jupiter:junit-jupiter:5.8.0'
-	)
-}
+	api 'org.apache.groovy:groovy:4.0.15'
+	api 'com.sun.xml.bind:jaxb-impl:2.3.5'
+	api 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+	jodaTimeAdaptersImplementation 'joda-time:joda-time:2.10.10'
 
-compileGroovy {
-	groovyOptions.optimizationOptions.indy = true
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 test {
