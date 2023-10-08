@@ -3,6 +3,7 @@ JAXB Utilities
 ==============
 
 [![Build Status](https://github.com/ultraq/jaxb-utilities/actions/workflows/build.yml/badge.svg)](https://github.com/ultraq/jaxb-utilities/actions)
+[![codecov](https://codecov.io/gh/ultraq/jaxb-utilities/graph/badge.svg?token=evhBU5mExI)](https://codecov.io/gh/ultraq/jaxb-utilities)
 [![Maven Central](https://img.shields.io/maven-central/v/nz.net.ultraq.jaxb/jaxb-utilities.svg?maxAge=3600)](http://search.maven.org/#search|ga|1|g%3A%22nz.net.ultraq.jaxb%22%20AND%20a%3A%22jaxb-utilities%22)
 
 An alternative API for working with XML files using JAXB.
