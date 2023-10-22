@@ -2,6 +2,9 @@
 Changelog
 =========
 
+### 3.0.0
+ - Upgrade Groovy to 4.0.15
+
 ### 2.1.0
  - Update JAXB API/impl to 2.3.3/2.3.5 respectively, using the new Eclipse
    implementations of the Jakarta XML bindings.  These versions remove the
